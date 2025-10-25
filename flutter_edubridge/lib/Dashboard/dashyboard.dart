@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'header.dart';
-import 'content.dart';
+import 'widgets/header.dart';
+import 'widgets/content.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
