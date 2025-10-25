@@ -4,7 +4,7 @@ Software Engineering - 11102 - TTH 1:30PM - 3:00PM
 ---
 
 ### 👤 Members
-- Aratia, Brian "THE GOD" Joseph  
+- Aratia, Brian Joseph  
 - Avelino, Robert Emmanuel  
 - Perez, Mel Stephen  
 
