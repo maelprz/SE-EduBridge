@@ -16,7 +16,7 @@ Software Engineering - 11102 - TTH 1:30PM - 3:00PM
 - Created UML diagram  
 - Designed the flow of events for the system  
 - Worked on the class diagram  
-- Developed the upper part of the dashboard (`header.dart`)  
+- Developed the dashboard
 - Organized file structure  
 - Created reusable widgets for the overall system  
 
