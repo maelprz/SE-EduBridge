@@ -17,3 +17,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/dashboard/history.png
+    - assets/dashboard/lessons.png
+    - assets/dashboard/quizzes.png
