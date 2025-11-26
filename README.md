@@ -31,5 +31,4 @@ Software Engineering - 11102 - TTH 1:30PM - 3:00PM
 - Contributed to UML diagrams  
 - Worked on class diagram and system flow of events  
 - Managed the file structure  
-- Developed the lower part of the dashboard (`content.dart` / `dashboard.dart`)  
 - Handled project documentation, including this README file  
