@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'Dashboard/dashboard.dart';
 void main() {
   runApp(const MainApp());
 }
@@ -10,7 +10,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Log In'))),
+      title: 'EduBridge',
+      home: DashboardScreen(),
     );
   }
 }
