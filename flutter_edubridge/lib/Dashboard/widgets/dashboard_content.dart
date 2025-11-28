@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'green_square_button.dart';
-import 'image_card.dart';
+import '../../reusables/image_card.dart';
 import 'see_more_card.dart';
 
 class DashboardContent extends StatelessWidget {

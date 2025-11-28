@@ -20,7 +20,6 @@ class _DashboardHeaderState extends State<DashboardHeader> {
 
   void _showDropdown() {
     final overlay = Overlay.of(context);
-    if (overlay == null) return;
 
     RenderBox renderBox = context.findRenderObject() as RenderBox;
     final size = renderBox.size;
@@ -43,6 +42,7 @@ class _DashboardHeaderState extends State<DashboardHeader> {
             right: 20,
             width: 150,
             child: Material(
+              color: Colors.white,
               elevation: 4,
               borderRadius: BorderRadius.circular(10),
               child: Column(
