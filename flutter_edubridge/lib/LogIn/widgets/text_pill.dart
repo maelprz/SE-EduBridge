@@ -6,6 +6,7 @@ class TextPill extends StatelessWidget {
   final double width;
   final double height;
   final double textSize;
+  final FontWeight? fontWeight;
 
   const TextPill({
     super.key,
@@ -14,6 +15,7 @@ class TextPill extends StatelessWidget {
     required this.width,
     required this.height,
     required this.textSize,
+    this.fontWeight,
   });
 
   @override
@@ -27,7 +29,7 @@ class TextPill extends StatelessWidget {
           style: TextStyle(
             color: textColor,
             fontSize: textSize,
-            fontWeight: FontWeight.w800,
+            fontWeight: fontWeight ?? FontWeight.normal,
           ),
         ),
       ),

@@ -1,20 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Container(
-//                   padding: const EdgeInsets.symmetric(horizontal: 20),
-//                   decoration: BoxDecoration(
-//                     // ignore: deprecated_member_use
-//                     color: Colors.teal.shade200.withOpacity(0.6),
-//                     borderRadius: BorderRadius.circular(40),
-//                   ),
-//                   child: const TextField(
-//                     decoration: InputDecoration(
-//                       border: InputBorder.none,
-//                       hintText: 'Email',
-//                     ),
-//                   ),
-//                 ),
-
 class InputFieldPill extends StatelessWidget {
   final String text;
   final Color backgroundColor;
@@ -27,8 +12,8 @@ class InputFieldPill extends StatelessWidget {
     required this.text,
     required this.backgroundColor,
     required this.textColor,
-    this.width = 410,
-    this.height = 62,
+    required this.width,
+    required this.height,
   });
 
   @override
@@ -40,6 +25,7 @@ class InputFieldPill extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(40),
+        border: Border.all(color: Colors.grey.shade300, width: 2),
       ),
       child: Center(
         child: TextField(
