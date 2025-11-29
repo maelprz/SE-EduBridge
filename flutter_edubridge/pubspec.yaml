@@ -1,6 +1,6 @@
 name: flutter_edubridge
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -23,3 +23,5 @@ flutter:
     - assets/dashboard/quizzes.png
     - assets/dashboard/ecology.jpg
     - assets/profile/user.png
+    - assets/login_registration/bg-pic.png
+    - assets/login_registration/logo.png

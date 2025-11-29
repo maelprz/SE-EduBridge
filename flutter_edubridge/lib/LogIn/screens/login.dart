@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'widgets/input_field_pill.dart';
-import 'widgets/text_pill.dart';
+import '../widgets/input_field_pill.dart';
+import '../widgets/text_pill.dart';
+import '../screens/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,7 +17,7 @@ class LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/bg-pic.png'),
+            image: AssetImage('assets/login_registration/bg-pic.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -31,7 +32,14 @@ class LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegistrationScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(
@@ -45,14 +53,18 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 5),
 
-                Image.asset('assets/logo.png', width: 247, height: 247),
+                Image.asset(
+                  'assets/login_registration/logo.png',
+                  width: 247,
+                  height: 247,
+                ),
 
                 TextPill(
                   text: "Login",
                   textColor: const Color.fromARGB(255, 2, 95, 78),
                   width: 113,
                   height: 62,
-                  textSize: 36,
+                  textSize: 32,
                 ),
 
                 TextPill(
@@ -69,6 +81,8 @@ class LoginScreenState extends State<LoginScreen> {
                   text: 'Email',
                   backgroundColor: const Color.fromARGB(255, 119, 187, 162),
                   textColor: Colors.white,
+                  width: 410,
+                  height: 62,
                 ),
 
                 const SizedBox(height: 20),
@@ -77,6 +91,8 @@ class LoginScreenState extends State<LoginScreen> {
                   text: 'Password',
                   backgroundColor: const Color.fromARGB(255, 119, 187, 162),
                   textColor: Colors.white,
+                  width: 410,
+                  height: 62,
                 ),
 
                 const SizedBox(height: 20),
