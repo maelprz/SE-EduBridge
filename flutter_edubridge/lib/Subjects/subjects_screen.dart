@@ -5,7 +5,7 @@ import 'spelling/spelling_screen.dart' as spelling;
 class SubjectsScreen extends StatelessWidget {
   const SubjectsScreen({super.key});
 
-  final Color green = const Color(0xFF0B6A32);
+  final Color green = const Color(0xFF0C4B36);
   final Color lightGreen = const Color(0xFFE8EEEA);
 
   @override
@@ -32,15 +32,23 @@ class SubjectsScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.arrow_back, size: 26, color: green),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context); // Go back to DashboardScreen
+                    },
+                    child: Icon(Icons.arrow_back, size: 26, color: green),
+                  ),
                   const SizedBox(width: 10),
                   Icon(Icons.menu_book_rounded, size: 30, color: green),
                   const SizedBox(width: 10),
-                  Text("Subjects",
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: green)),
+                  Text(
+                    "Subjects",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: green,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -59,7 +67,7 @@ class SubjectsScreen extends StatelessWidget {
                     /// READING ------------------------------------------
                     subjectCard(
                       title: "Reading",
-                      image: "", // ← set asset later
+                      image: "assets/subjects/reading.png",
                       onTap: () {
                         Navigator.push(
                           context,
@@ -73,7 +81,7 @@ class SubjectsScreen extends StatelessWidget {
                     /// SPELLING ------------------------------------------
                     subjectCard(
                       title: "Spelling",
-                      image: "", // ← placeholder
+                      image: "assets/subjects/spelling.png", 
                       onTap: () {
                         Navigator.push(
                           context,

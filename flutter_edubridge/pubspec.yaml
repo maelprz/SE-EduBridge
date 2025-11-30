@@ -25,3 +25,5 @@ flutter:
     - assets/profile/user.png
     - assets/login_registration/bg-pic.png
     - assets/login_registration/logo.png
+    - assets/subjects/reading.ping
+    - assets/subjects/spelling.ping

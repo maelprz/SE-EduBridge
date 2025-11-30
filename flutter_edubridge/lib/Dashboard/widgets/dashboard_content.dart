@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'green_square_button.dart';
 import '../../reusables/image_card.dart';
 import 'see_more_card.dart';
+import '../../Subjects/subjects_screen.dart';
 
 class DashboardContent extends StatelessWidget {
   final Size size;
@@ -19,14 +20,37 @@ class DashboardContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              GreenSquareButton(icon: Icons.menu_book, label: "Subjects"),
-              SizedBox(width: 5),
-              GreenSquareButton(icon: Icons.quiz, label: "Mock Quiz"),
-              SizedBox(width: 5),
-              GreenSquareButton(icon: Icons.group, label: "Mentorship"),
-              SizedBox(width: 5),
-              GreenSquareButton(icon: Icons.mic, label: "Vocal Practice"),
+            children: [
+              GreenSquareButton(
+                icon: Icons.menu_book,
+                label: "Subjects",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const SubjectsScreen(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(width: 5),
+              GreenSquareButton(
+                icon: Icons.quiz,
+                label: "Mock Quiz",
+                onPressed: () => print("Mock Quiz tapped"),
+              ),
+              const SizedBox(width: 5),
+              GreenSquareButton(
+                icon: Icons.group,
+                label: "Mentorship",
+                onPressed: () => print("Mentorship tapped"),
+              ),
+              const SizedBox(width: 5),
+              GreenSquareButton(
+                icon: Icons.mic,
+                label: "Vocal Practice",
+                onPressed: () => print("Vocal Practice tapped"),
+              ),
             ],
           ),
         ),
