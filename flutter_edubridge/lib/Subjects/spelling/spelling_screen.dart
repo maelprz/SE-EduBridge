@@ -8,7 +8,7 @@ class SpellingSubject extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Spelling"),
-        backgroundColor: const Color(0xFF0B6A32),
+        backgroundColor: const Color(0xFF0C4B36),
       ),
       body: const Center(
         child: Text(

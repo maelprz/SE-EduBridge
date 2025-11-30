@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class ReadingSubject extends StatelessWidget {
-  const ReadingSubject({super.key});
+class WritingSubject extends StatelessWidget {
+  const WritingSubject({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reading"),
+        title: const Text("Writing"),
         backgroundColor: const Color(0xFF0C4B36),
       ),
       body: const Center(
         child: Text(
-          "Reading Activities and Lessons",
+          "Writing Activities and Lessons",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
