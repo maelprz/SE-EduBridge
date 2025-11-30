@@ -75,11 +75,11 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                     label: "Log Out",
                     onTap: () {
                       _removeDropdown();
-                      Navigator.push(
+
+                      Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => const LoginScreen(),
-                        ),
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        (route) => false,
                       );
                     },
                   ),
