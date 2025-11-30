@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../../Profile/profile_screen.dart';
+import '../../LogIn/screens/login.dart';
 class DashboardHeader extends StatefulWidget {
   const DashboardHeader({super.key});
 
@@ -74,7 +75,12 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                     label: "Log Out",
                     onTap: () {
                       _removeDropdown();
-                      print("Log Out tapped");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LoginScreen(),
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -109,10 +115,19 @@ class _DashboardHeaderState extends State<DashboardHeader> {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
-            radius: 28,
-            backgroundColor: Color(0xFF0C4B36),
-            child: Icon(Icons.person, color: Colors.white, size: 32),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            },
+            borderRadius: BorderRadius.circular(28),
+            child: const CircleAvatar(
+              radius: 28,
+              backgroundColor: Color(0xFF0C4B36),
+              child: Icon(Icons.person, color: Colors.white, size: 32),
+            ),
           ),
           const SizedBox(width: 15),
           const Expanded(

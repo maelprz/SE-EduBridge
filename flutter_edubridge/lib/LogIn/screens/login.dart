@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/input_field_pill.dart';
 import '../widgets/text_pill.dart';
 import '../screens/registration_screen.dart';
+import '../../Dashboard/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -99,7 +100,14 @@ class LoginScreenState extends State<LoginScreen> {
 
                 // Login Button
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const DashboardScreen(),
+                      ),
+                    );
+                  },
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 15),

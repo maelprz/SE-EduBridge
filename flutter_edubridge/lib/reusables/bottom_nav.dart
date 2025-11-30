@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../Dashboard/dashboard_screen.dart';
+import '../Profile/profile_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -74,7 +76,25 @@ class _BottomNavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap?.call(index),
+      onTap: () {
+        if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const DashboardScreen(),
+            ),
+          );
+        }
+        if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ProfileScreen(),
+            ),
+          );
+        }
+        onTap?.call(index);
+      },
       child: Icon(
         icon,
         size: 28,
@@ -83,5 +103,3 @@ class _BottomNavItem extends StatelessWidget {
     );
   }
 }
-
-

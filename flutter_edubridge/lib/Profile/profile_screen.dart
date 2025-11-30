@@ -34,21 +34,26 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               child: Column(
                 children: [
+                  const SizedBox(height: 25),
                   const ProfileImageCard(
                     imageUrl: "assets/profile/user.png",
                     size: 190,
                   ),
 
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 50),
 
                   _ProfileField(label: "Name", value: "Perez, Mel Stephen"),
+                  const SizedBox(height: 25),
                   _ProfileField(label: "Username", value: "maelprz"),
+                  const SizedBox(height: 25),
                   _ProfileField(label: "Email", value: "me*****32@gmail.com"),
+                  const SizedBox(height: 25),
                   _ProfileField(
                     label: "Course & Year",
                     value:
                         "Bachelor of Science in Information Technology",
                   ),
+                  const SizedBox(height: 25),
                   _ProfileField(label: "Birthday", value: "December 25, 2000"),
                 ],
               ),
