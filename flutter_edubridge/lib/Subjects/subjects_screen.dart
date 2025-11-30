@@ -13,94 +13,83 @@ class SubjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavWrapper(
-      index: 1, 
+      index: 1,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF6F6F6),
-        body: SafeArea(
-          child: Column(
-            children: [
-              /// HEADER -------------------------------
-              Container(
-                height: 90,
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: lightGreen,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.12),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    )
-                  ],
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(90),
+          child: Container(
+            decoration: BoxDecoration(
+              color: lightGreen, 
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.12),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
                 ),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Icon(Icons.arrow_back, size: 26, color: Color(0xFF0C4B36)),
-                    ),
-                    const SizedBox(width: 60),
-                    Icon(Icons.menu_book_rounded, size: 38, color: Color(0xFF0C4B36)),
-                    const SizedBox(width: 10),
-                    Text(
-                      "Subjects",
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFF0C4B36),
-                      ),
-                    ),
-                  ],
-                ),
+              ],
+            ),
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              toolbarHeight: 90,
+              leading: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(Icons.arrow_back, size: 26, color: green),
               ),
-
-              const SizedBox(height: 30),
-
-              /// SUBJECT GRID -------------------------
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 25,
-                    crossAxisSpacing: 18,
-                    children: [
-                      subjectCard(
-                        title: "Reading",
-                        image: "assets/subjects/reading.png",
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => ReadingSubject()),
-                          );
-                        },
-                      ),
-
-                      subjectCard(
-                        title: "Writing",
-                        image: "assets/subjects/writing.png",
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => WritingSubject()),
-                          );
-                        },
-                      ),
-
-                      subjectCard(
-                        title: "Spelling",
-                        image: "assets/subjects/spelling.png",
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => SpellingSubject()),
-                          );
-                        },
-                      ),
-                    ],
+              title: Row(
+                children: [
+                  const SizedBox(width: 35),
+                  Icon(Icons.menu_book_rounded, size: 36, color: green),
+                  const SizedBox(width: 5),
+                  Text(
+                    "Subjects",
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w900,
+                      color: green,
+                    ),
                   ),
-                ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          child: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 25,
+            crossAxisSpacing: 18,
+            children: [
+              subjectCard(
+                title: "Reading",
+                image: "assets/subjects/reading.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ReadingSubject()),
+                  );
+                },
+              ),
+              subjectCard(
+                title: "Writing",
+                image: "assets/subjects/writing.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => WritingSubject()),
+                  );
+                },
+              ),
+              subjectCard(
+                title: "Spelling",
+                image: "assets/subjects/spelling.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => SpellingSubject()),
+                  );
+                },
               ),
             ],
           ),
@@ -109,16 +98,18 @@ class SubjectsScreen extends StatelessWidget {
     );
   }
 
-  Widget subjectCard({required String title, required String image, required VoidCallback onTap}) {
-    return GestureDetector(
+  Widget subjectCard({
+    required String title,
+    required String image,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(22),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
+          border: Border.all(color: Colors.black, width: 1),
           image: DecorationImage(
             image: AssetImage(image),
             fit: BoxFit.cover,
@@ -134,10 +125,7 @@ class SubjectsScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Colors.black,
-                width: 1,
-              ),
+              border: Border.all(color: Colors.black, width: 1),
             ),
             child: Text(
               title,
