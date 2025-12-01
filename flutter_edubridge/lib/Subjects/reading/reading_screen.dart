@@ -49,10 +49,152 @@ class ReadingSubject extends StatelessWidget {
             ),
           ),
         ),
-        body: const Center(
-          child: Text(
-            "Reading Activities and Lessons",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Reading",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w900,
+                    color: green,
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                Text(
+                  "Welcome to Reading Class!\n"
+                  "This course is designed to help students develop strong reading skills "
+                  "through stories, poems, and informational texts. Students will learn "
+                  "to understand what they read, build vocabulary, and express ideas clearly.",
+                  style: const TextStyle(fontSize: 16, height: 1.5),
+                ),
+
+                const SizedBox(height: 25),
+
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(
+                    "Course Objective",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Text(
+                        "• Understand and analyze reading material\n"
+                        "• Improve vocabulary and comprehension\n"
+                        "• Develop confidence in reading and expression\n"
+                        "• Enhance critical thinking through literature",
+                        style: TextStyle(fontSize: 16, height: 1.4),
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(
+                    "Announcements",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        "No announcements yet. Stay tuned!",
+                        style: TextStyle(fontSize: 16, height: 1.4),
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(
+                    "Modules",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        "Module 1: Introduction to Reading\n"
+                        "Module 2: Vocabulary Building\n"
+                        "Module 3: Story Reading Practice",
+                        style: TextStyle(fontSize: 16, height: 1.4),
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(
+                    "Quizzes",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        "Quiz list will appear here soon.",
+                        style: TextStyle(fontSize: 16, height: 1.4),
+                      ),
+                    )
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(
+                    "Assignments",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        "Assignments will be posted here once available.",
+                        style: TextStyle(fontSize: 16, height: 1.4),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
