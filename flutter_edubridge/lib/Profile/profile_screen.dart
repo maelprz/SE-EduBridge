@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../reusables/bottom_nav_wrapper.dart';
+import '../Dashboard/dashboard_screen.dart';
 import 'widgets/profile_image_card.dart';
-
+import '../reusables/bottom_nav_wrapper.dart';
+import '../reusables/app_bar_pill.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -11,22 +12,16 @@ class ProfileScreen extends StatelessWidget {
       index: 2, // Profile is selected
       child: Column(
         children: [
-          AppBar(
-            backgroundColor: const Color(0xFFF4F6F6),
-            elevation: 2,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Color(0xFF0C4B36)),
-              onPressed: () => Navigator.pop(context),
-            ),
-            title: const Text(
-              'Profile',
-              style: TextStyle(
-                color: Color(0xFF0C4B36),
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
-            ),
-            centerTitle: true,
+          AppBarPill(
+            title: "Profile",
+            onLeadingIconPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const DashboardScreen(),
+                ),
+              );
+            },
           ),
 
           Expanded(
