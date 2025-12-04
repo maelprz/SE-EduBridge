@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 class InputFieldPill extends StatelessWidget {
+  final TextEditingController? controller;
   final String text;
-  final Color backgroundColor;
-  final Color textColor;
   final double width;
   final double height;
+  final Color backgroundColor;
+  final Color textColor;
+  final bool obscureText; // <-- add this
 
   const InputFieldPill({
     super.key,
+    this.controller,
     required this.text,
-    required this.backgroundColor,
-    required this.textColor,
     required this.width,
     required this.height,
+    required this.backgroundColor,
+    required this.textColor,
+    this.obscureText = false, // default to false
   });
 
   @override
@@ -21,20 +25,23 @@ class InputFieldPill extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(40),
-        border: Border.all(color: Colors.grey.shade300, width: 2),
+        borderRadius: BorderRadius.circular(30),
       ),
-      child: Center(
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: text,
-            hintStyle: TextStyle(color: textColor),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Center(
+          child: TextField(
+            controller: controller,
+            obscureText: obscureText,
+            style: TextStyle(color: textColor),
+            decoration: InputDecoration(
+              hintText: text,
+              border: InputBorder.none,
+            ),
           ),
-          style: TextStyle(color: textColor),
         ),
       ),
     );
