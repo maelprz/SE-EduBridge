@@ -1,252 +1,224 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/input_field_pill.dart';
 import '../widgets/text_pill.dart';
 import '../widgets/button_pill.dart';
 import 'login.dart';
+import '../../providers/auth_provider.dart';
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationScreen extends ConsumerStatefulWidget {
   const RegistrationScreen({super.key});
 
   @override
-  State<RegistrationScreen> createState() => RegistrationScreenState();
+  ConsumerState<RegistrationScreen> createState() => RegistrationScreenState();
 }
 
-class RegistrationScreenState extends State<RegistrationScreen> {
+class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+  Future<void> _register() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final authService = ref.read(authServiceProvider);
+
+    final error = await authService.register(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      username: usernameController.text.trim(),
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+
+    if (error == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Account created successfully!")),
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(error)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login_registration/bg-pic.png'),
-            fit: BoxFit.cover,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/login_registration/bg-pic.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 30),
-                Center(
-                  child: TextPill(
-                    text: "Join Us",
-                    textColor: const Color.fromARGB(255, 2, 95, 78),
-                    textSize: 50,
-                    width: 246,
-                    height: 60,
-                    fontWeight: FontWeight.w800,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 30),
+                  Center(
+                    child: TextPill(
+                      text: "Join Us",
+                      textColor: const Color.fromARGB(255, 2, 95, 78),
+                      textSize: 50,
+                      width: 246,
+                      height: 60,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                ),
-
-                Center(
-                  child: TextPill(
-                    text: "Create New Account",
-                    textColor: const Color.fromARGB(255, 2, 95, 78),
-                    textSize: 30,
-                    width: 300,
-                    height: 35,
-                    fontWeight: FontWeight.w500,
+                  Center(
+                    child: TextPill(
+                      text: "Create New Account",
+                      textColor: const Color.fromARGB(255, 2, 95, 78),
+                      textSize: 30,
+                      width: 300,
+                      height: 35,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                SizedBox(height: 30),
+                  const SizedBox(height: 30),
 
-                SizedBox(
-                  height: 700,
-                  width: 600,
-                  child: Card(
-                    color: Colors.white,
+                  Card(
+                    color: Colors.white.withOpacity(0.95),
                     elevation: 8.0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(height: 20),
-                        Center(
-                          child: TextPill(
-                            text: "Personal Info",
-                            textColor: Colors.black,
-                            textSize: 28,
-                            width: 250,
-                            height: 50,
-                            fontWeight: FontWeight.w800,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 20),
+                          Center(
+                            child: TextPill(
+                              text: "Personal Info",
+                              textColor: Colors.black,
+                              textSize: 28,
+                              width: 250,
+                              height: 50,
+                              fontWeight: FontWeight.w800,
+                            ),
                           ),
-                        ),
+                          const SizedBox(height: 20),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 15),
-                          child: TextPill(
-                            text: "Your Name",
-                            textColor: Colors.black,
-                            textSize: 15,
-                            width: 100,
-                            height: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 10,
-                          ),
-                          child: Row(
+                          // Name Fields
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InputFieldPill(
+                                controller: firstNameController,
                                 text: "First Name",
-                                backgroundColor: const Color.fromARGB(
-                                  255,
-                                  255,
-                                  255,
-                                  255,
-                                ),
-                                textColor: const Color.fromARGB(
-                                  255,
-                                  100,
-                                  100,
-                                  100,
-                                ),
+                                backgroundColor: Colors.white,
+                                textColor: const Color.fromARGB(255, 100, 100, 100),
                                 width: 170,
                                 height: 50,
                               ),
-
                               InputFieldPill(
+                                controller: lastNameController,
                                 text: "Last Name",
                                 backgroundColor: Colors.white,
-                                textColor: const Color.fromARGB(
-                                  255,
-                                  100,
-                                  100,
-                                  100,
-                                ),
+                                textColor: const Color.fromARGB(255, 100, 100, 100),
                                 width: 170,
                                 height: 50,
                               ),
                             ],
                           ),
-                        ),
+                          const SizedBox(height: 15),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 15),
-                          child: TextPill(
-                            text: "Email Address",
-                            textColor: Colors.black,
-                            textSize: 15,
-                            width: 120,
-                            height: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25,
-                            vertical: 10,
-                          ),
-                          child: InputFieldPill(
-                            text: 'Enter Email Address',
+                          // Email
+                          InputFieldPill(
+                            controller: emailController,
+                            text: 'Email Address',
                             backgroundColor: Colors.white,
                             textColor: const Color.fromARGB(255, 100, 100, 100),
-                            width: 600,
+                            width: double.infinity,
                             height: 50,
                           ),
-                        ),
+                          const SizedBox(height: 15),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 15),
-                          child: TextPill(
-                            text: "Username",
-                            textColor: Colors.black,
-                            textSize: 15,
-                            width: 105,
-                            height: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25,
-                            vertical: 10,
-                          ),
-                          child: InputFieldPill(
-                            text: 'Enter Username',
+                          // Username
+                          InputFieldPill(
+                            controller: usernameController,
+                            text: 'Username',
                             backgroundColor: Colors.white,
                             textColor: const Color.fromARGB(255, 100, 100, 100),
-                            width: 600,
+                            width: double.infinity,
                             height: 50,
                           ),
-                        ),
+                          const SizedBox(height: 15),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 15),
-                          child: TextPill(
-                            text: "Password",
-                            textColor: Colors.black,
-                            textSize: 15,
-                            width: 105,
-                            height: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25,
-                            vertical: 10,
-                          ),
-                          child: InputFieldPill(
+                          // Password
+                          InputFieldPill(
+                            controller: passwordController,
                             text: 'Enter Password',
                             backgroundColor: Colors.white,
                             textColor: const Color.fromARGB(255, 100, 100, 100),
-                            width: 600,
+                            width: double.infinity,
                             height: 50,
+                            obscureText: true,
                           ),
-                        ),
-                        SizedBox(height: 20),
-                        Center(
-                          child: ButtonPill(
-                            text: "Register",
-                            backgroundColor: Colors.teal.shade700,
-                            textColor: Colors.white,
-                            textSize: 20,
-                            width: 352,
-                            height: 50,
-                            fontWeight: FontWeight.w800,
+                          const SizedBox(height: 20),
+
+                          // Register Button
+                          Center(
+                            child: isLoading
+                                ? const CircularProgressIndicator()
+                                : ButtonPill(
+                                    text: "Register",
+                                    backgroundColor: Colors.teal.shade700,
+                                    textColor: Colors.white,
+                                    textSize: 20,
+                                    width: 352,
+                                    height: 50,
+                                    fontWeight: FontWeight.w800,
+                                    onPressed: _register,
+                                  ),
                           ),
-                        ),
+                          const SizedBox(height: 10),
 
-                        SizedBox(height: 10),
-
-                        Center(
-                          child: ButtonPill(
-                            text: "Back to Login",
-                            backgroundColor: const Color.fromARGB(
-                              255,
-                              202,
-                              202,
-                              202,
+                          // Back to Login
+                          Center(
+                            child: ButtonPill(
+                              text: "Back to Login",
+                              backgroundColor: const Color.fromARGB(255, 202, 202, 202),
+                              textColor: Colors.teal.shade700,
+                              textSize: 20,
+                              width: 352,
+                              height: 50,
+                              fontWeight: FontWeight.w800,
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginScreen(),
+                                  ),
+                                );
+                              },
                             ),
-                            textColor: Colors.teal.shade700,
-                            textSize: 20,
-                            width: 352,
-                            height: 50,
-                            fontWeight: FontWeight.w800,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
-                                ),
-                              );
-                            },
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -254,3 +226,5 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
+
+

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../provider/quiz_provider.dart';
+import '../providers/quiz_provider.dart';
 import '../models/questions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
