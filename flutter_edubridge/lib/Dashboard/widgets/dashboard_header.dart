@@ -110,7 +110,7 @@ class _DashboardHeaderState extends ConsumerState<DashboardHeader> {
 
   @override
   Widget build(BuildContext context) {
-    final userProfile = ref.watch(userProfileProvider);
+    ref.watch(userProfileProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(

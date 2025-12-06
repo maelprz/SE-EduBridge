@@ -14,7 +14,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /// Login with email or username
+  /// LOGIN
   Future<String?> login({
     required String emailOrUsername, 
     required String password,
@@ -22,14 +22,15 @@ class AuthService {
     try {
       String email = emailOrUsername;
 
-      // If user entered a username, resolve it to email
       if (!emailOrUsername.contains('@')) {
         final query = await _firestore
             .collection('users')
             .where('username', isEqualTo: emailOrUsername)
             .limit(1)
             .get();
+
         if (query.docs.isEmpty) return 'Username not found';
+
         email = query.docs.first.data()['email'];
       }
 
@@ -38,10 +39,19 @@ class AuthService {
         password: password,
       );
 
-      final userDoc = await _firestore.collection('users').doc(userCredential.user!.uid).get();
-      final profileData = userDoc.data();
-      if (profileData != null) {
-        ref.read(userProfileProvider.notifier).setProfile(profileData);
+      // Load user profile after login
+      final userDoc = await _firestore
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .get();
+
+      final data = userDoc.data();
+      if (data != null) {
+        if (data['birthday'] is Timestamp) {
+          data['birthday'] = (data['birthday'] as Timestamp).toDate();
+        }
+
+        ref.read(userProfileProvider.notifier).setProfile(data);
       }
 
       return null;
@@ -52,20 +62,24 @@ class AuthService {
     }
   }
 
-  /// Register a new user
+  /// REGISTER USER
   Future<String?> register({
     required String email,
     required String password,
     required String firstName,
     required String lastName,
     required String username,
+    required String courseYear,
+    required DateTime birthday,
   }) async {
     try {
-      // Check if username is already taken
+      // Check username availability
       final query = await _firestore
           .collection('users')
           .where('username', isEqualTo: username)
+          .limit(1)
           .get();
+
       if (query.docs.isNotEmpty) return 'Username already exists';
 
       final userCredential = await _auth.createUserWithEmailAndPassword(
@@ -73,17 +87,25 @@ class AuthService {
         password: password,
       );
 
-      // Create user profile document
       final profileData = {
         'firstName': firstName,
         'lastName': lastName,
         'username': username,
         'email': email,
+        'courseYear': courseYear,
+        'birthday': Timestamp.fromDate(birthday),
+        'createdAt': Timestamp.now(),
       };
 
-      await _firestore.collection('users').doc(userCredential.user!.uid).set(profileData);
+      await _firestore
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set(profileData);
 
-      ref.read(userProfileProvider.notifier).setProfile(profileData);
+      ref.read(userProfileProvider.notifier).setProfile({
+        ...profileData,
+        'birthday': birthday,
+      });
 
       return null;
     } on FirebaseAuthException catch (e) {
@@ -93,7 +115,7 @@ class AuthService {
     }
   }
 
-  /// Logout
+  /// LOGOUT
   Future<void> logout() async {
     await _auth.signOut();
     ref.read(userProfileProvider.notifier).clearProfile();
