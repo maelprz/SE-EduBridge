@@ -5,6 +5,7 @@ import '../widgets/text_pill.dart';
 import '../widgets/button_pill.dart';
 import 'login.dart';
 import '../../providers/auth_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegistrationScreen extends ConsumerStatefulWidget {
   const RegistrationScreen({super.key});
@@ -23,18 +24,60 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   bool isLoading = false;
 
   Future<void> _register() async {
+    final firstName = firstNameController.text.trim();
+    final lastName = lastNameController.text.trim();
+    final email = emailController.text.trim();
+    final username = usernameController.text.trim();
+    final password = passwordController.text.trim();
+
+    // -------------------------
+    // Basic Validation
+    // -------------------------
+    if (firstName.isEmpty ||
+        lastName.isEmpty ||
+        email.isEmpty ||
+        username.isEmpty ||
+        password.isEmpty) {
+      _showMessage("Please fill in all fields.");
+      return;
+    }
+
+    if (!email.contains("@") || !email.contains(".")) {
+      _showMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 6) {
+      _showMessage("Password must be at least 6 characters.");
+      return;
+    }
+
     setState(() {
       isLoading = true;
     });
 
     final authService = ref.read(authServiceProvider);
 
+    // Username Uniqueness Check
+    final usernameExists = await FirebaseFirestore.instance
+        .collection("users")
+        .where("username", isEqualTo: username)
+        .limit(1)
+        .get();
+
+    if (usernameExists.docs.isNotEmpty) {
+      setState(() => isLoading = false);
+      _showMessage("Username is already taken. Choose another one.");
+      return;
+    }
+
+    // Register via Auth Provider
     final error = await authService.register(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      firstName: firstNameController.text.trim(),
-      lastName: lastNameController.text.trim(),
-      username: usernameController.text.trim(),
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
     );
 
     setState(() {
@@ -42,18 +85,21 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
     });
 
     if (error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Account created successfully!")),
-      );
+      _showMessage("Account created successfully!");
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error)),
-      );
+      _showMessage(error);
     }
+  }
+
+  void _showMessage(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(msg)),
+    );
   }
 
   @override
@@ -74,6 +120,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 30),
+
                   Center(
                     child: TextPill(
                       text: "Join Us",
@@ -84,6 +131,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                       fontWeight: FontWeight.w800,
                     ),
                   ),
+
                   Center(
                     child: TextPill(
                       text: "Create New Account",
@@ -94,6 +142,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+
                   const SizedBox(height: 30),
 
                   Card(
@@ -105,6 +154,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 20),
+
                           Center(
                             child: TextPill(
                               text: "Personal Info",
@@ -115,9 +165,9 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                               fontWeight: FontWeight.w800,
                             ),
                           ),
+
                           const SizedBox(height: 20),
 
-                          // Name Fields
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -125,7 +175,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                                 controller: firstNameController,
                                 text: "First Name",
                                 backgroundColor: Colors.white,
-                                textColor: const Color.fromARGB(255, 100, 100, 100),
+                                textColor: Colors.black87,
                                 width: 170,
                                 height: 50,
                               ),
@@ -133,49 +183,49 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                                 controller: lastNameController,
                                 text: "Last Name",
                                 backgroundColor: Colors.white,
-                                textColor: const Color.fromARGB(255, 100, 100, 100),
+                                textColor: Colors.black87,
                                 width: 170,
                                 height: 50,
                               ),
                             ],
                           ),
+
                           const SizedBox(height: 15),
 
-                          // Email
                           InputFieldPill(
                             controller: emailController,
                             text: 'Email Address',
                             backgroundColor: Colors.white,
-                            textColor: const Color.fromARGB(255, 100, 100, 100),
+                            textColor: Colors.black87,
                             width: double.infinity,
                             height: 50,
                           ),
+
                           const SizedBox(height: 15),
 
-                          // Username
                           InputFieldPill(
                             controller: usernameController,
                             text: 'Username',
                             backgroundColor: Colors.white,
-                            textColor: const Color.fromARGB(255, 100, 100, 100),
+                            textColor: Colors.black87,
                             width: double.infinity,
                             height: 50,
                           ),
+
                           const SizedBox(height: 15),
 
-                          // Password
                           InputFieldPill(
                             controller: passwordController,
                             text: 'Enter Password',
                             backgroundColor: Colors.white,
-                            textColor: const Color.fromARGB(255, 100, 100, 100),
+                            textColor: Colors.black87,
                             width: double.infinity,
                             height: 50,
                             obscureText: true,
                           ),
+
                           const SizedBox(height: 20),
 
-                          // Register Button
                           Center(
                             child: isLoading
                                 ? const CircularProgressIndicator()
@@ -190,13 +240,14 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                                     onPressed: _register,
                                   ),
                           ),
+
                           const SizedBox(height: 10),
 
-                          // Back to Login
                           Center(
                             child: ButtonPill(
                               text: "Back to Login",
-                              backgroundColor: const Color.fromARGB(255, 202, 202, 202),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 202, 202, 202),
                               textColor: Colors.teal.shade700,
                               textSize: 20,
                               width: 352,
@@ -212,6 +263,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                               },
                             ),
                           ),
+
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -226,5 +278,3 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
     );
   }
 }
-
-

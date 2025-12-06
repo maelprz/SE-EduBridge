@@ -26,7 +26,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
     final authService = ref.read(authServiceProvider);
 
     final error = await authService.login(
-      email: emailController.text.trim(),
+      emailOrUsername: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
 
@@ -110,12 +110,12 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                 // Email Field
                 InputFieldPill(
                   controller: emailController,
-                  text: 'Email',
+                  text: 'Username or Email',
                   backgroundColor: const Color.fromARGB(255, 119, 187, 162),
                   textColor: Colors.white,
                   width: 410,
                   height: 62,
-                  obscureText: false, 
+                  obscureText: false,
                 ),
 
                 const SizedBox(height: 20),
