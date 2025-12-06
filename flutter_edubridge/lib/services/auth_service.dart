@@ -5,13 +5,14 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Register user
   Future<String?> register({
     required String email,
     required String password,
     required String firstName,
     required String lastName,
     required String username,
+    required String birthday,
+    required String courseYear,
   }) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
@@ -24,6 +25,8 @@ class AuthService {
         'lastName': lastName,
         'username': username,
         'email': email,
+        'birthday': birthday,
+        'courseYear': courseYear,
         'createdAt': DateTime.now().toIso8601String(),
       });
 
