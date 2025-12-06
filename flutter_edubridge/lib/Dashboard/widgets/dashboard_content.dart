@@ -3,6 +3,7 @@ import 'green_square_button.dart';
 import '../../reusables/image_card.dart';
 import 'see_more_card.dart';
 import '../../Subjects/subjects_screen.dart';
+import '../../Quiz/quiz_screen.dart';
 
 class DashboardContent extends StatelessWidget {
   final Size size;
@@ -27,9 +28,7 @@ class DashboardContent extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => const SubjectsScreen(),
-                    ),
+                    MaterialPageRoute(builder: (_) => const SubjectsScreen()),
                   );
                 },
               ),
@@ -37,7 +36,12 @@ class DashboardContent extends StatelessWidget {
               GreenSquareButton(
                 icon: Icons.quiz,
                 label: "Mock Quiz",
-                onPressed: () => print("Mock Quiz tapped"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const QuizScreen()),
+                  );
+                },
               ),
               const SizedBox(width: 5),
               GreenSquareButton(
