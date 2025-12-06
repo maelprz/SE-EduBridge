@@ -1,14 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../Profile/profile_screen.dart';
 import '../../LogIn/screens/login.dart';
-class DashboardHeader extends StatefulWidget {
+import '../../../providers/user_provider.dart';
+
+class DashboardHeader extends ConsumerStatefulWidget {
   const DashboardHeader({super.key});
 
   @override
-  State<DashboardHeader> createState() => _DashboardHeaderState();
+  ConsumerState<DashboardHeader> createState() => _DashboardHeaderState();
 }
 
-class _DashboardHeaderState extends State<DashboardHeader> {
+class _DashboardHeaderState extends ConsumerState<DashboardHeader> {
   OverlayEntry? _dropdownOverlay;
 
   void _toggleDropdown() {
@@ -73,14 +77,19 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                   ),
                   _DropdownItem(
                     label: "Log Out",
-                    onTap: () {
+                    onTap: () async {
                       _removeDropdown();
 
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
-                        (route) => false,
-                      );
+                      await FirebaseAuth.instance.signOut();
+
+                      ref.invalidate(userProfileProvider);
+                      if (context.mounted) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          (route) => false,
+                        );
+                      }
                     },
                   ),
                 ],
@@ -101,6 +110,7 @@ class _DashboardHeaderState extends State<DashboardHeader> {
 
   @override
   Widget build(BuildContext context) {
+    final userProfile = ref.watch(userProfileProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
@@ -130,18 +140,35 @@ class _DashboardHeaderState extends State<DashboardHeader> {
             ),
           ),
           const SizedBox(width: 15),
-          const Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Welcome!",
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("PEREZ, MEL STEPHEN",
-                    style: TextStyle(fontSize: 14, color: Colors.black54)),
-              ],
+          Expanded(
+            child: Consumer(
+              builder: (context, ref, _) {
+                final profile = ref.watch(userProfileProvider);
+
+                if (profile == null) {
+                  return const Text("Loading...",
+                      style: TextStyle(fontSize: 14, color: Colors.black54));
+                }
+
+                final first = profile["firstName"] ?? "";
+                final last = profile["lastName"] ?? "";
+                final formatted = "$last, $first";
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Welcome!",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(
+                      formatted,
+                      style: const TextStyle(fontSize: 14, color: Colors.black54),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
+
           IconButton(
             icon: const Icon(Icons.notifications_none, size: 28),
             onPressed: () {},
