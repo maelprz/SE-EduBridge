@@ -1,6 +1,5 @@
-//import 'package:flutter/material.dart';
-import '../models/questions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../models/questions.dart';
 
 final List<Questions> questionBank = [
   Questions(
@@ -23,16 +22,29 @@ final List<Questions> questionBank = [
   ),
 ];
 
-class QuizController extends StateNotifier<int> {
-  QuizController() : super(0);
+class QuizNotifier extends StateNotifier<int> {
+  QuizNotifier() : super(0);
 
-  void nextQuestion() {
+  int score = 0;
+
+  void nextQuestion({required int selectedIndex}) {
+    // Increment score if correct
+    if (selectedIndex == questionBank[state].answerIndex) {
+      score++;
+    }
+
+    // Move to next question if not last
     if (state < questionBank.length - 1) {
       state++;
     }
   }
+
+  void resetQuiz() {
+    state = 0;
+    score = 0;
+  }
 }
 
-final quizProvider = StateNotifierProvider<QuizController, int>(
-  (ref) => QuizController(),
-);
+final quizProvider = StateNotifierProvider<QuizNotifier, int>((ref) {
+  return QuizNotifier();
+});
