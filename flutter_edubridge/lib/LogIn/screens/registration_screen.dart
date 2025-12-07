@@ -166,7 +166,7 @@ class RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                   const SizedBox(height: 30),
 
                   Card(
-                    color: Colors.white.withOpacity(0.95),
+                    color: Colors.white.withValues(alpha: 0.95),
                     elevation: 8.0,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
