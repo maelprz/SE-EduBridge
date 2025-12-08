@@ -1,12 +1,51 @@
 import 'package:flutter/material.dart';
 import '../reusables/bottom_nav_wrapper.dart';
 import '../reusables/app_bar_pill.dart';
+import 'mentorship_contents/mentor_list.dart';
 
 class MentorshipScreen extends StatelessWidget {
   const MentorshipScreen({super.key});
 
   final Color green = const Color(0xFF0C4B36);
   final Color lightGreen = const Color(0xFFE8EEEA);
+
+  Widget bulletItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.check_circle, color: green, size: 18),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 16, height: 1.5),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget sectionCard({required Widget child}) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: lightGreen,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 13),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,101 +69,120 @@ class MentorshipScreen extends StatelessWidget {
                   color: green,
                 ),
               ),
-              const SizedBox(height: 10),
               Text(
-                "Welcome to the Mentorship Program! \nThis program connects students with mentors who can guide, inspire, "
-                "and help you develop skills in academics, life, and personal growth.",
+                "Connect with mentors who guide, inspire, and help you grow academically and personally.",
                 style: const TextStyle(fontSize: 16, height: 1.5),
               ),
-              const SizedBox(height: 25),
 
-              Text(
-                "Program Objectives",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w800,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                "• Receive guidance from experienced mentors\n"
-                "• Improve academic performance and study habits\n"
-                "• Build confidence and leadership skills\n"
-                "• Explore career paths and personal development opportunities",
-                style: TextStyle(fontSize: 16, height: 1.5),
-              ),
-              const SizedBox(height: 20),
-
-              ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Announcements",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "No announcements yet. Stay tuned!",
-                        style: TextStyle(fontSize: 16, height: 1.4),
+              // Program Objectives
+              sectionCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Program Objectives",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: green,
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 12),
+                    bulletItem("Receive guidance from experienced mentors"),
+                    bulletItem("Improve academic performance and study habits"),
+                    bulletItem("Build confidence and leadership skills"),
+                    bulletItem("Explore career paths and personal development"),
                   ],
                 ),
-              const SizedBox(height: 20),
+              ),
 
-              Text(
-                "How to Join",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w800,
-                  color: green,
+              // Announcements
+              sectionCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Announcements",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: green,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      "No announcements yet. Stay tuned!",
+                      style: TextStyle(fontSize: 16, height: 1.4),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text(
-                "1. Sign up through the mentorship application form.\n"
-                "2. Choose a mentor that matches your interests or goals.\n"
-                "3. Schedule sessions and communicate with your mentor regularly.\n"
-                "4. Participate actively and complete assigned tasks for growth.",
-                style: TextStyle(fontSize: 16, height: 1.5),
-              ),
-              const SizedBox(height: 20),
 
-              Text(
-                "Benefits",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w800,
-                  color: green,
+              // How to Join
+              sectionCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "How to Join",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: green,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    bulletItem("Sign up through the mentorship application form"),
+                    bulletItem("Choose a mentor that matches your goals"),
+                    bulletItem("Schedule sessions and communicate regularly"),
+                    bulletItem("Participate actively and complete tasks"),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text(
-                "• Personalized guidance and support\n"
-                "• Improved learning habits and academic performance\n"
-                "• Opportunities to explore interests and career paths\n"
-                "• Enhanced confidence, motivation, and personal growth",
-                style: TextStyle(fontSize: 16, height: 1.5),
-              ),
-              const SizedBox(height: 29),
 
+              // Benefits
+              sectionCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Benefits",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: green,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    bulletItem("Personalized guidance and support"),
+                    bulletItem("Improved learning habits and academic performance"),
+                    bulletItem("Opportunities to explore interests and career paths"),
+                    bulletItem("Enhanced confidence, motivation, and personal growth"),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              // Apply Button
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Placeholder for action, e.g., navigate to mentorship form
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const MentorListScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: green,
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 3,
                   ),
                   child: const Text(
-                    "Join Now →",
+                    "Apply Now →",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
