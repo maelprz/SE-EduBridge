@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../reusables/bottom_nav_wrapper.dart';
 import '../../reusables/app_bar_pill.dart';
-import 'spelling_lessons/spelling_lesson_one.dart';
-import 'spelling_lessons/spelling_lesson_two.dart';
-import 'spelling_lessons/spelling_lesson_three.dart';
+import 'history_lessons/history_lesson_one.dart';
+import 'history_lessons/history_lesson_two.dart';
+import 'history_lessons/history_lesson_three.dart';
 
-class SpellingSubject extends StatelessWidget {
-  const SpellingSubject({super.key});
+class HistorySubject extends StatelessWidget {
+  const HistorySubject({super.key});
 
   final Color green = const Color(0xFF0C4B36);
   final Color lightGreen = const Color(0xFFE8EEEA);
@@ -17,7 +17,7 @@ class SpellingSubject extends StatelessWidget {
       index: 1,
       child: Scaffold(
         appBar: AppBarPill(
-          title: "Spelling",
+          title: "History",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
@@ -27,7 +27,7 @@ class SpellingSubject extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Spelling",
+                  "History",
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
@@ -36,10 +36,10 @@ class SpellingSubject extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Welcome to Spelling Class!\n"
-                  "This course is designed to help students improve their spelling skills "
-                  "through interactive activities, word lists, and quizzes. Students will learn "
-                  "to spell correctly, understand word patterns, and enhance their vocabulary.",
+                  "Welcome to History Class!\n"
+                  "This course is designed to help students explore past events, "
+                  "civilizations, and cultures. Students will learn to understand timelines, "
+                  "cause-and-effect, and the impact of history on today’s world.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
                 const SizedBox(height: 25),
@@ -59,10 +59,10 @@ class SpellingSubject extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(
-                        "• Master correct spelling of common words\n"
-                        "• Recognize and use spelling patterns\n"
-                        "• Enhance vocabulary and word usage\n"
-                        "• Build confidence in written communication",
+                        "• Understand major events in world and local history\n"
+                        "• Learn about past civilizations and cultures\n"
+                        "• Analyze cause-and-effect relationships in history\n"
+                        "• Appreciate how history shapes our present and future",
                         style: TextStyle(fontSize: 16, height: 1.4),
                       ),
                     )
@@ -115,12 +115,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonOne(),
+                                  builder: (context) => const HistoryLessonOne(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 1: Introduction to Spelling",
+                              "Lesson 1: Introduction to History",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -135,12 +135,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonTwo(),
+                                  builder: (context) => const HistoryLessonTwo(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 2: Common Word Lists",
+                              "Lesson 2: Ancient Civilizations",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -155,12 +155,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonThree(),
+                                  builder: (context) => const HistoryLessonThree(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 3: Spelling Practice Activities",
+                              "Lesson 3: Modern History Overview",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,

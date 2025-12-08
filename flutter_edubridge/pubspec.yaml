@@ -34,3 +34,6 @@ flutter:
     - assets/subjects/reading.png
     - assets/subjects/spelling.png
     - assets/subjects/writing.png
+    - assets/subjects/math.png
+    - assets/subjects/science.png
+    - assets/subjects/history.png

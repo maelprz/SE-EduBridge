@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../reusables/bottom_nav_wrapper.dart';
+import '../../reusables/app_bar_pill.dart';
+import 'writing_lessons/writing_lesson_one.dart';
+import 'writing_lessons/writing_lesson_two.dart';
+import 'writing_lessons/writing_lesson_three.dart';
 
 class WritingSubject extends StatelessWidget {
   const WritingSubject({super.key});
@@ -10,44 +14,11 @@ class WritingSubject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavWrapper(
-      index: 1, 
+      index: 1,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(90),
-          child: Container(
-            decoration: BoxDecoration(
-              color: lightGreen,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.12),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              toolbarHeight: 90,
-              leading: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(Icons.arrow_back, size: 26, color: green),
-              ),
-              title: Row(
-                children: [
-                  const SizedBox(width: 75),
-                  Text(
-                    "Writing",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w900,
-                      color: green,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        appBar: AppBarPill(
+          title: "Writing",
+          onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
@@ -58,14 +29,12 @@ class WritingSubject extends StatelessWidget {
                 Text(
                   "Writing",
                   style: TextStyle(
-                    fontSize: 36,
+                    fontSize: 32,
                     fontWeight: FontWeight.w900,
                     color: green,
                   ),
                 ),
-
                 const SizedBox(height: 8),
-
                 Text(
                   "Welcome to Writing Class!\n"
                   "This course is designed to help students develop strong writing skills "
@@ -73,9 +42,9 @@ class WritingSubject extends StatelessWidget {
                   "Students will learn to express ideas clearly, organize paragraphs, and improve grammar.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
-
                 const SizedBox(height: 25),
 
+                // Course Objective
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -99,9 +68,9 @@ class WritingSubject extends StatelessWidget {
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Announcements
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -122,27 +91,85 @@ class WritingSubject extends StatelessWidget {
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Lessons (clickable like Reading)
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
-                    "Modules",
+                    "Lessons",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w800,
                       color: green,
                     ),
                   ),
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Module 1: Introduction to Writing\n"
-                        "Module 2: Paragraph & Essay Writing\n"
-                        "Module 3: Creative Story Writing",
-                        style: TextStyle(fontSize: 16, height: 1.4),
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const WritingLessonOne(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 1: Introduction to Writing",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const WritingLessonTwo(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 2: Paragraph & Essay Writing",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const WritingLessonThree(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 3: Creative Story Writing",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],
@@ -150,6 +177,7 @@ class WritingSubject extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
+                // Quizzes
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -173,6 +201,7 @@ class WritingSubject extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
+                // Assignments
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(

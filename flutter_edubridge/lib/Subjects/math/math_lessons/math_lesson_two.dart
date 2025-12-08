@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../reusables/bottom_nav_wrapper.dart';
 import '../../../reusables/app_bar_pill.dart';
-import 'writing_lesson_three.dart';
+import 'math_lesson_three.dart';
 
-class WritingLessonTwo extends StatelessWidget {
-  const WritingLessonTwo({super.key});
+class MathLessonTwo extends StatelessWidget {
+  const MathLessonTwo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,8 @@ class WritingLessonTwo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Introduction
               Text(
-                "Paragraph & Essay Writing",
+                "Fractions & Decimals",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -38,16 +37,14 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "In this lesson, you will learn how to structure paragraphs and essays. "
-                "A strong paragraph has a topic sentence, supporting details, and a concluding sentence. "
-                "Essays are a collection of organized paragraphs expressing a main idea.",
+                "Fractions and decimals are ways to represent parts of a whole. "
+                "Understanding them helps with dividing, measuring, and everyday math tasks.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Paragraph Structure
               Text(
-                "Paragraph Structure",
+                "Fractions",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -56,16 +53,16 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Topic Sentence: Introduces the main idea of the paragraph.\n"
-                "• Supporting Details: Provides facts, examples, or explanations.\n"
-                "• Concluding Sentence: Summarizes or reinforces the paragraph's main idea.",
+                "• A fraction represents a part of a whole (e.g., 1/2, 3/4).\n"
+                "• The top number is the numerator (parts we have).\n"
+                "• The bottom number is the denominator (total parts).\n"
+                "• Example: 3/4 means 3 out of 4 equal parts.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Essay Structure
               Text(
-                "Essay Structure",
+                "Decimals",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -74,16 +71,15 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "1. Introduction – Introduce the topic and state your thesis.\n"
-                "2. Body Paragraphs – Each paragraph covers one main point supporting your thesis.\n"
-                "3. Conclusion – Summarize your ideas and restate the thesis in a new way.",
+                "• A decimal is another way to show parts of a whole using a dot (e.g., 0.5, 0.75).\n"
+                "• 0.5 = 1/2, 0.25 = 1/4\n"
+                "• Decimals are often used in money, measurements, and science.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Tips for Better Paragraphs
               Text(
-                "Tips for Writing Strong Paragraphs",
+                "Math Exercise",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -92,60 +88,22 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Keep sentences focused on the main idea.\n"
-                "• Use transition words (first, next, however, finally) for flow.\n"
-                "• Vary sentence length for readability.\n"
-                "• Revise to remove repetition and unclear ideas.",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Writing Exercise
-              Text(
-                "Writing Exercise",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Exercise:\n"
-                "Write a paragraph about your favorite place. Include:\n"
-                "• Topic sentence introducing the place\n"
-                "• 3 supporting details (what it looks like, why you like it, activities)\n"
-                "• Concluding sentence",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Mini Activity
-              Text(
-                "Mini Activity",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "• Outline 2-3 paragraphs for a short essay.\n"
-                "• Write the essay draft.\n"
-                "• Revise and check for grammar and clarity.",
+                "1. Shade 1/3 of a rectangle.\n"
+                "2. Write 0.75 as a fraction.\n"
+                "3. Convert 2/5 to a decimal.\n"
+                "4. Add: 1/2 + 3/4 = ?\n"
+                "5. Subtract: 0.8 - 0.25 = ?",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 30),
 
-              // Next Lesson Button
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WritingLessonThree(),
+                        builder: (context) => const MathLessonThree(),
                       ),
                     );
                   },

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../reusables/bottom_nav_wrapper.dart';
 import '../../reusables/app_bar_pill.dart';
-import 'spelling_lessons/spelling_lesson_one.dart';
-import 'spelling_lessons/spelling_lesson_two.dart';
-import 'spelling_lessons/spelling_lesson_three.dart';
+import 'math_lessons/math_lesson_one.dart';
+import 'math_lessons/math_lesson_two.dart';
+import 'math_lessons/math_lesson_three.dart';
 
-class SpellingSubject extends StatelessWidget {
-  const SpellingSubject({super.key});
+class MathSubject extends StatelessWidget {
+  const MathSubject({super.key});
 
   final Color green = const Color(0xFF0C4B36);
   final Color lightGreen = const Color(0xFFE8EEEA);
@@ -17,7 +17,7 @@ class SpellingSubject extends StatelessWidget {
       index: 1,
       child: Scaffold(
         appBar: AppBarPill(
-          title: "Spelling",
+          title: "Math",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
@@ -27,7 +27,7 @@ class SpellingSubject extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Spelling",
+                  "Math",
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
@@ -36,10 +36,10 @@ class SpellingSubject extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Welcome to Spelling Class!\n"
-                  "This course is designed to help students improve their spelling skills "
-                  "through interactive activities, word lists, and quizzes. Students will learn "
-                  "to spell correctly, understand word patterns, and enhance their vocabulary.",
+                  "Welcome to Math Class!\n"
+                  "This course is designed to help students understand mathematical concepts, "
+                  "solve problems, and develop logical thinking. Students will learn numbers, "
+                  "operations, equations, and real-world applications.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
                 const SizedBox(height: 25),
@@ -59,10 +59,10 @@ class SpellingSubject extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(
-                        "• Master correct spelling of common words\n"
-                        "• Recognize and use spelling patterns\n"
-                        "• Enhance vocabulary and word usage\n"
-                        "• Build confidence in written communication",
+                        "• Understand basic arithmetic operations\n"
+                        "• Solve equations and word problems\n"
+                        "• Develop logical and critical thinking\n"
+                        "• Apply math to everyday situations",
                         style: TextStyle(fontSize: 16, height: 1.4),
                       ),
                     )
@@ -115,12 +115,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonOne(),
+                                  builder: (context) => const MathLessonOne(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 1: Introduction to Spelling",
+                              "Lesson 1: Numbers & Operations",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -135,12 +135,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonTwo(),
+                                  builder: (context) => const MathLessonTwo(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 2: Common Word Lists",
+                              "Lesson 2: Fractions & Decimals",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -155,12 +155,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonThree(),
+                                  builder: (context) => const MathLessonThree(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 3: Spelling Practice Activities",
+                              "Lesson 3: Word Problems & Applications",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../reusables/bottom_nav_wrapper.dart';
+import '../../reusables/app_bar_pill.dart';
+import 'reading_lessons/reading_lesson_one.dart';
+import 'reading_lessons/reading_lesson_two.dart';
+import 'reading_lessons/reading_lesson_three.dart';
 
 class ReadingSubject extends StatelessWidget {
   const ReadingSubject({super.key});
@@ -12,42 +16,9 @@ class ReadingSubject extends StatelessWidget {
     return BottomNavWrapper(
       index: 1,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(90),
-          child: Container(
-            decoration: BoxDecoration(
-              color: lightGreen,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.12),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              toolbarHeight: 90,
-              leading: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(Icons.arrow_back, size: 26, color: green),
-              ),
-              title: Row(
-                children: [
-                  const SizedBox(width: 75),
-                  Text(
-                    "Reading",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w900,
-                      color: green,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        appBar: AppBarPill(
+          title: "Reading",
+          onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
@@ -58,14 +29,12 @@ class ReadingSubject extends StatelessWidget {
                 Text(
                   "Reading",
                   style: TextStyle(
-                    fontSize: 36,
+                    fontSize: 32,
                     fontWeight: FontWeight.w900,
                     color: green,
                   ),
                 ),
-
                 const SizedBox(height: 8),
-
                 Text(
                   "Welcome to Reading Class!\n"
                   "This course is designed to help students develop strong reading skills "
@@ -73,9 +42,9 @@ class ReadingSubject extends StatelessWidget {
                   "to understand what they read, build vocabulary, and express ideas clearly.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
-
                 const SizedBox(height: 25),
 
+                // Course Objective
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -99,9 +68,9 @@ class ReadingSubject extends StatelessWidget {
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Announcements
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -122,34 +91,92 @@ class ReadingSubject extends StatelessWidget {
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Lessons
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
-                    "Modules",
+                    "Lessons",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w800,
                       color: green,
                     ),
                   ),
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Module 1: Introduction to Reading\n"
-                        "Module 2: Vocabulary Building\n"
-                        "Module 3: Story Reading Practice",
-                        style: TextStyle(fontSize: 16, height: 1.4),
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ReadingLessonOne(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 1: Introduction to Reading",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ReadingLessonTwo(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 2: Vocabulary Building",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ReadingLessonThree(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Lesson 3: Story Reading Practice",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.4,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Quizzes
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(
@@ -170,9 +197,9 @@ class ReadingSubject extends StatelessWidget {
                     )
                   ],
                 ),
-
                 const SizedBox(height: 10),
 
+                // Assignments
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   title: Text(

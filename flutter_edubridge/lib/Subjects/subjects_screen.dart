@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import '../reusables/bottom_nav_wrapper.dart';
+import '../reusables/app_bar_pill.dart';
 import 'reading/reading_screen.dart';
 import 'spelling/spelling_screen.dart';
 import 'writing/writing_screen.dart';
+import 'math/math_screen.dart';
+import 'science/science_screen.dart';
+import 'history/history_screen.dart';
 
 class SubjectsScreen extends StatelessWidget {
   const SubjectsScreen({super.key});
@@ -15,44 +19,9 @@ class SubjectsScreen extends StatelessWidget {
     return BottomNavWrapper(
       index: 1,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(90),
-          child: Container(
-            decoration: BoxDecoration(
-              color: lightGreen, 
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.12),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              toolbarHeight: 90,
-              leading: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(Icons.arrow_back, size: 26, color: green),
-              ),
-              title: Row(
-                children: [
-                  const SizedBox(width: 35),
-                  Icon(Icons.menu_book_rounded, size: 36, color: green),
-                  const SizedBox(width: 5),
-                  Text(
-                    "Subjects",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w900,
-                      color: green,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        appBar: AppBarPill(
+          title: "Subjects",
+          onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
@@ -91,6 +60,36 @@ class SubjectsScreen extends StatelessWidget {
                   );
                 },
               ),
+              subjectCard(
+                title: "Math",
+                image: "assets/subjects/math.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const MathSubject()),
+                  );
+                },
+              ),
+              subjectCard(
+                title: "Science",
+                image: "assets/subjects/science.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ScienceSubject()),
+                  );
+                },
+              ),
+              subjectCard(
+                title: "History",
+                image: "assets/subjects/history.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const HistorySubject()),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -109,7 +108,7 @@ class SubjectsScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: Colors.black, width: 1),
+          border: Border.all(color: const Color(0xFF0C4B36), width: 2.5),
           image: DecorationImage(
             image: AssetImage(image),
             fit: BoxFit.cover,
@@ -125,11 +124,12 @@ class SubjectsScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.black, width: 1),
+              border: Border.all(color: const Color(0xFF0C4B36), width: 2),
             ),
             child: Text(
               title,
               style: const TextStyle(
+                color: Color(0xFF0C4B36),
                 fontSize: 18,
                 fontWeight: FontWeight.w800,
               ),

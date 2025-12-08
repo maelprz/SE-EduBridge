@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../reusables/bottom_nav_wrapper.dart';
 import '../../../reusables/app_bar_pill.dart';
 
-class ReadingLessonThree extends StatelessWidget {
-  const ReadingLessonThree({super.key});
+class ScienceLessonThree extends StatelessWidget {
+  const ScienceLessonThree({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const Color green = Color(0xFF0C4B36);
+    final Color green = const Color(0xFF0C4B36);
 
     return BottomNavWrapper(
       index: 1,
@@ -26,9 +26,8 @@ class ReadingLessonThree extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Story Reading Practice
               Text(
-                "Story Reading Practice",
+                "Weather, Earth & Space",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -37,15 +36,14 @@ class ReadingLessonThree extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "In this lesson, you'll practice reading a short story and answering comprehension questions. "
-                "Use the strategies from the previous lessons: skimming, scanning, understanding context, and summarizing.",
+                "Earth and space are full of fascinating phenomena. "
+                "Weather, seasons, planets, and stars affect life on our planet.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Short Story
               Text(
-                "Short Story",
+                "Weather & Seasons",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -54,18 +52,15 @@ class ReadingLessonThree extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "\"It was a chilly autumn morning when Daniel decided to take a walk through the forest near his home. "
-                "The leaves crunched beneath his feet, and the crisp air filled his lungs. "
-                "He noticed squirrels darting up trees and birds hopping from branch to branch. "
-                "As he walked deeper into the woods, he discovered a small, hidden pond shimmering in the sunlight. "
-                "The peaceful scene made him pause and appreciate the simple beauty of nature.\"",
+                "• Weather includes sun, rain, clouds, wind, and temperature.\n"
+                "• Seasons occur due to Earth's tilt and orbit around the sun.\n"
+                "• Seasons affect plants, animals, and human activities.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Comprehension Questions
               Text(
-                "Comprehension Questions",
+                "Earth & Space",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -74,18 +69,15 @@ class ReadingLessonThree extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "1. What season is described in the story?\n"
-                "2. How does Daniel feel as he walks through the forest?\n"
-                "3. List two things Daniel observes in the forest.\n"
-                "4. Why does the pond make him pause?\n"
-                "5. Summarize the story in 2-3 sentences.",
+                "• Earth is the third planet from the sun.\n"
+                "• The moon orbits Earth and causes tides.\n"
+                "• Stars and planets form the solar system and galaxies.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Mini Activity
               Text(
-                "Mini Activity",
+                "Science Exercise",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -94,14 +86,14 @@ class ReadingLessonThree extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Find a short story or article online or in a book. "
-                "• Skim it first to get the main idea.\n"
-                "• Scan for 3 important details.\n"
-                "• Read it carefully and summarize in your own words.\n"
-                "• Highlight new vocabulary and try to understand it using context clues.",
+                "1. Draw the sun, Earth, and moon showing orbits.\n"
+                "2. Describe today’s weather and predict tomorrow’s.\n"
+                "3. List three planets and one fact about each.\n"
+                "4. Identify objects in the night sky.\n"
+                "5. Explain why seasons change during the year.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 70),
             ],
           ),
         ),
