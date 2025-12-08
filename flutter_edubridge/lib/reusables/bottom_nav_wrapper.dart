@@ -5,11 +5,7 @@ class BottomNavWrapper extends StatelessWidget {
   final Widget child;
   final int index;
 
-  const BottomNavWrapper({
-    super.key,
-    required this.child,
-    required this.index,
-  });
+  const BottomNavWrapper({super.key, required this.child, required this.index});
 
   @override
   Widget build(BuildContext context) {

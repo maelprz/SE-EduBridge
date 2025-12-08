@@ -7,29 +7,34 @@ import '../../reusables/bottom_nav_wrapper.dart';
 import 'result_screen.dart';
 
 class QuizScreen extends ConsumerWidget {
-  const QuizScreen({super.key});
+  final String? title;
+
+  const QuizScreen({super.key, this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(quizProvider);
     final Questions currentQ = questionBank[currentIndex];
-
     final labelLetters = ["A", "B", "C", "D"];
 
     return BottomNavWrapper(
-      index: 0,
+      index: 0, // ← IMPORTANT
       child: Scaffold(
         backgroundColor: Colors.white,
+
         appBar: AppBarPill(
-          title: "Quiz 1",
+          title: title ?? "Quiz",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
+
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 const SizedBox(height: 100),
+
+                // Question text
                 Center(
                   child: Text(
                     currentQ.question,
@@ -41,7 +46,9 @@ class QuizScreen extends ConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
+
                 const SizedBox(height: 40),
+
                 Expanded(
                   child: ListView.builder(
                     itemCount: currentQ.choices.length,
@@ -68,12 +75,9 @@ class QuizScreen extends ConsumerWidget {
                                 currentIndex == questionBank.length - 1;
 
                             if (isLast) {
-                              // Count last question first
                               notifier.nextQuestion(selectedIndex: i);
-
                               final finalScore = notifier.score;
 
-                              // Show confirmation dialog
                               showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
@@ -90,7 +94,6 @@ class QuizScreen extends ConsumerWidget {
                                       onPressed: () {
                                         Navigator.pop(context);
 
-                                        // Navigate to ResultScreen
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -100,7 +103,6 @@ class QuizScreen extends ConsumerWidget {
                                             ),
                                           ),
                                         ).then((_) {
-                                          // Reset quiz after returning
                                           notifier.resetQuiz();
                                         });
                                       },
