@@ -4,6 +4,7 @@ import '../../reusables/image_card.dart';
 import 'see_more_card.dart';
 import '../../Subjects/subjects_screen.dart';
 import '../../Quiz/quizzes_screen.dart';
+import '../../Voice_Lesson/voice_lesson_screen.dart';
 
 class DashboardContent extends StatelessWidget {
   final Size size;
@@ -53,7 +54,14 @@ class DashboardContent extends StatelessWidget {
               GreenSquareButton(
                 icon: Icons.mic,
                 label: "Vocal Practice",
-                onPressed: () => print("Vocal Practice tapped"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const VoiceLessonScreen(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
