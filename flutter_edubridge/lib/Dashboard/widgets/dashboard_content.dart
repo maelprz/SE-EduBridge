@@ -4,6 +4,7 @@ import '../../reusables/image_card.dart';
 import 'see_more_card.dart';
 import '../../Subjects/subjects_screen.dart';
 import '../../Quiz/quizzes_screen.dart';
+import '../../Mentorship/mentorship_screen.dart';
 
 class DashboardContent extends StatelessWidget {
   final Size size;
@@ -47,7 +48,12 @@ class DashboardContent extends StatelessWidget {
               GreenSquareButton(
                 icon: Icons.group,
                 label: "Mentorship",
-                onPressed: () => print("Mentorship tapped"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const MentorshipScreen()),
+                  );
+                }
               ),
               const SizedBox(width: 5),
               GreenSquareButton(
