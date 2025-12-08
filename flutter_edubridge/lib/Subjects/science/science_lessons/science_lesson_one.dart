@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../reusables/bottom_nav_wrapper.dart';
 import '../../../reusables/app_bar_pill.dart';
-import 'writing_lesson_three.dart';
+import 'science_lesson_two.dart';
 
-class WritingLessonTwo extends StatelessWidget {
-  const WritingLessonTwo({super.key});
+class ScienceLessonOne extends StatelessWidget {
+  const ScienceLessonOne({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class WritingLessonTwo extends StatelessWidget {
       index: 1,
       child: Scaffold(
         appBar: AppBarPill(
-          title: "Lesson 2",
+          title: "Lesson 1",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: SingleChildScrollView(
@@ -27,9 +27,8 @@ class WritingLessonTwo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Introduction
               Text(
-                "Paragraph & Essay Writing",
+                "Introduction to Science",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -38,16 +37,14 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "In this lesson, you will learn how to structure paragraphs and essays. "
-                "A strong paragraph has a topic sentence, supporting details, and a concluding sentence. "
-                "Essays are a collection of organized paragraphs expressing a main idea.",
+                "Science is the study of the natural world. "
+                "It helps us understand how things work, from plants and animals to planets and stars.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Paragraph Structure
               Text(
-                "Paragraph Structure",
+                "Branches of Science",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -56,16 +53,16 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Topic Sentence: Introduces the main idea of the paragraph.\n"
-                "• Supporting Details: Provides facts, examples, or explanations.\n"
-                "• Concluding Sentence: Summarizes or reinforces the paragraph's main idea.",
+                "• Biology – The study of living things.\n"
+                "• Chemistry – The study of matter and substances.\n"
+                "• Physics – The study of energy, force, and motion.\n"
+                "• Earth Science – The study of Earth, weather, and space.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Essay Structure
               Text(
-                "Essay Structure",
+                "Science Skills",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -74,16 +71,16 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "1. Introduction – Introduce the topic and state your thesis.\n"
-                "2. Body Paragraphs – Each paragraph covers one main point supporting your thesis.\n"
-                "3. Conclusion – Summarize your ideas and restate the thesis in a new way.",
+                "• Observation – Looking closely at things.\n"
+                "• Measurement – Using tools to find size, weight, or quantity.\n"
+                "• Experimentation – Testing ideas through experiments.\n"
+                "• Analysis – Understanding results and patterns.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Tips for Better Paragraphs
               Text(
-                "Tips for Writing Strong Paragraphs",
+                "Science Exercise",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -92,60 +89,22 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Keep sentences focused on the main idea.\n"
-                "• Use transition words (first, next, however, finally) for flow.\n"
-                "• Vary sentence length for readability.\n"
-                "• Revise to remove repetition and unclear ideas.",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Writing Exercise
-              Text(
-                "Writing Exercise",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Exercise:\n"
-                "Write a paragraph about your favorite place. Include:\n"
-                "• Topic sentence introducing the place\n"
-                "• 3 supporting details (what it looks like, why you like it, activities)\n"
-                "• Concluding sentence",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Mini Activity
-              Text(
-                "Mini Activity",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "• Outline 2-3 paragraphs for a short essay.\n"
-                "• Write the essay draft.\n"
-                "• Revise and check for grammar and clarity.",
+                "1. Observe a plant or flower and write what you notice.\n"
+                "2. Identify three things that move and describe how they move.\n"
+                "3. Watch the sky and describe the clouds or stars you see.\n"
+                "4. List five living and non-living things around you.\n"
+                "5. Predict what might happen if you water a plant every day.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 30),
 
-              // Next Lesson Button
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WritingLessonThree(),
+                        builder: (context) => const ScienceLessonTwo(),
                       ),
                     );
                   },

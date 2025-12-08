@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../reusables/bottom_nav_wrapper.dart';
 import '../../reusables/app_bar_pill.dart';
-import 'spelling_lessons/spelling_lesson_one.dart';
-import 'spelling_lessons/spelling_lesson_two.dart';
-import 'spelling_lessons/spelling_lesson_three.dart';
+import 'science_lessons/science_lesson_one.dart';
+import 'science_lessons/science_lesson_two.dart';
+import 'science_lessons/science_lesson_three.dart';
 
-class SpellingSubject extends StatelessWidget {
-  const SpellingSubject({super.key});
+class ScienceSubject extends StatelessWidget {
+  const ScienceSubject({super.key});
 
   final Color green = const Color(0xFF0C4B36);
   final Color lightGreen = const Color(0xFFE8EEEA);
@@ -17,7 +17,7 @@ class SpellingSubject extends StatelessWidget {
       index: 1,
       child: Scaffold(
         appBar: AppBarPill(
-          title: "Spelling",
+          title: "Science",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
@@ -27,7 +27,7 @@ class SpellingSubject extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Spelling",
+                  "Science",
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
@@ -36,10 +36,10 @@ class SpellingSubject extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Welcome to Spelling Class!\n"
-                  "This course is designed to help students improve their spelling skills "
-                  "through interactive activities, word lists, and quizzes. Students will learn "
-                  "to spell correctly, understand word patterns, and enhance their vocabulary.",
+                  "Welcome to Science Class!\n"
+                  "This course introduces students to the wonders of the natural world, "
+                  "covering topics like biology, physics, chemistry, and Earth science. "
+                  "Students will learn to observe, experiment, and think critically.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
                 const SizedBox(height: 25),
@@ -59,10 +59,10 @@ class SpellingSubject extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(
-                        "• Master correct spelling of common words\n"
-                        "• Recognize and use spelling patterns\n"
-                        "• Enhance vocabulary and word usage\n"
-                        "• Build confidence in written communication",
+                        "• Understand basic scientific concepts\n"
+                        "• Conduct simple experiments and observations\n"
+                        "• Develop critical and analytical thinking\n"
+                        "• Explore the natural world and environment",
                         style: TextStyle(fontSize: 16, height: 1.4),
                       ),
                     )
@@ -115,12 +115,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonOne(),
+                                  builder: (context) => const ScienceLessonOne(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 1: Introduction to Spelling",
+                              "Lesson 1: Introduction to Science",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -135,12 +135,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonTwo(),
+                                  builder: (context) => const ScienceLessonTwo(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 2: Common Word Lists",
+                              "Lesson 2: Living Things & Environment",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,
@@ -155,12 +155,12 @@ class SpellingSubject extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SpellingLessonThree(),
+                                  builder: (context) => const ScienceLessonThree(),
                                 ),
                               );
                             },
                             child: const Text(
-                              "Lesson 3: Spelling Practice Activities",
+                              "Lesson 3: Matter & Energy",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.4,

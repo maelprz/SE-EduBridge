@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../reusables/bottom_nav_wrapper.dart';
 import '../../../reusables/app_bar_pill.dart';
-import 'writing_lesson_three.dart';
+import 'math_lesson_two.dart';
 
-class WritingLessonTwo extends StatelessWidget {
-  const WritingLessonTwo({super.key});
+class MathLessonOne extends StatelessWidget {
+  const MathLessonOne({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class WritingLessonTwo extends StatelessWidget {
       index: 1,
       child: Scaffold(
         appBar: AppBarPill(
-          title: "Lesson 2",
+          title: "Lesson 1",
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: SingleChildScrollView(
@@ -27,9 +27,8 @@ class WritingLessonTwo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Introduction
               Text(
-                "Paragraph & Essay Writing",
+                "Introduction to Math",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -38,16 +37,15 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "In this lesson, you will learn how to structure paragraphs and essays. "
-                "A strong paragraph has a topic sentence, supporting details, and a concluding sentence. "
-                "Essays are a collection of organized paragraphs expressing a main idea.",
+                "Mathematics is the study of numbers, shapes, and patterns. "
+                "It helps us solve problems, understand the world, and think logically. "
+                "In this lesson, we will explore basic concepts of numbers and operations.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Paragraph Structure
               Text(
-                "Paragraph Structure",
+                "Why Math is Important",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -56,16 +54,16 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Topic Sentence: Introduces the main idea of the paragraph.\n"
-                "• Supporting Details: Provides facts, examples, or explanations.\n"
-                "• Concluding Sentence: Summarizes or reinforces the paragraph's main idea.",
+                "• Problem Solving: Math teaches you to analyze and solve problems.\n"
+                "• Everyday Use: Math is everywhere — in shopping, cooking, and measuring.\n"
+                "• Logical Thinking: Math develops reasoning skills.\n"
+                "• Career Opportunities: Many fields require math skills.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Essay Structure
               Text(
-                "Essay Structure",
+                "Numbers and Operations",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -74,16 +72,18 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "1. Introduction – Introduce the topic and state your thesis.\n"
-                "2. Body Paragraphs – Each paragraph covers one main point supporting your thesis.\n"
-                "3. Conclusion – Summarize your ideas and restate the thesis in a new way.",
+                "1. Whole Numbers – Numbers without fractions or decimals (0, 1, 2, ...).\n"
+                "2. Integers – Whole numbers including negatives (... -2, -1, 0, 1, 2 ...).\n"
+                "3. Addition – Combining numbers to get a sum.\n"
+                "4. Subtraction – Finding the difference between numbers.\n"
+                "5. Multiplication – Repeated addition.\n"
+                "6. Division – Splitting into equal parts.",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 25),
 
-              // Tips for Better Paragraphs
               Text(
-                "Tips for Writing Strong Paragraphs",
+                "Math Exercise",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -92,60 +92,23 @@ class WritingLessonTwo extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "• Keep sentences focused on the main idea.\n"
-                "• Use transition words (first, next, however, finally) for flow.\n"
-                "• Vary sentence length for readability.\n"
-                "• Revise to remove repetition and unclear ideas.",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Writing Exercise
-              Text(
-                "Writing Exercise",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Exercise:\n"
-                "Write a paragraph about your favorite place. Include:\n"
-                "• Topic sentence introducing the place\n"
-                "• 3 supporting details (what it looks like, why you like it, activities)\n"
-                "• Concluding sentence",
-                style: TextStyle(fontSize: 16, height: 1.6),
-              ),
-              const SizedBox(height: 25),
-
-              // Mini Activity
-              Text(
-                "Mini Activity",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: green,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "• Outline 2-3 paragraphs for a short essay.\n"
-                "• Write the essay draft.\n"
-                "• Revise and check for grammar and clarity.",
+                "Solve the following:\n"
+                "1. 12 + 7 = ?\n"
+                "2. 20 - 8 = ?\n"
+                "3. 5 × 6 = ?\n"
+                "4. 24 ÷ 4 = ?\n"
+                "5. What is the difference between an integer and a whole number?",
                 style: TextStyle(fontSize: 16, height: 1.6),
               ),
               const SizedBox(height: 30),
 
-              // Next Lesson Button
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WritingLessonThree(),
+                        builder: (context) => const MathLessonTwo(),
                       ),
                     );
                   },
