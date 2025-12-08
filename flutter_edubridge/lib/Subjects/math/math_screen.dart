@@ -21,7 +21,7 @@ class MathSubject extends StatelessWidget {
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,191 +37,130 @@ class MathSubject extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   "Welcome to Math Class!\n"
-                  "This course is designed to help students understand mathematical concepts, "
-                  "solve problems, and develop logical thinking. Students will learn numbers, "
-                  "operations, equations, and real-world applications.",
+                  "This course helps students understand mathematical concepts, solve problems, "
+                  "and develop logical thinking. Learn numbers, operations, equations, and real-world applications.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
 
-                // Course Objective
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Course Objective",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
+                sectionCard(
+                  title: "Course Objective",
+                  icon: Icons.calculate,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text("• Understand basic arithmetic operations"),
+                      Text("• Solve equations and word problems"),
+                      Text("• Develop logical and critical thinking"),
+                      Text("• Apply math to everyday situations"),
+                    ],
                   ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Text(
-                        "• Understand basic arithmetic operations\n"
-                        "• Solve equations and word problems\n"
-                        "• Develop logical and critical thinking\n"
-                        "• Apply math to everyday situations",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Announcements
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Announcements",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "No announcements yet. Stay tuned!",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
+                sectionCard(
+                  title: "Announcements",
+                  icon: Icons.campaign,
+                  child: const Text("No announcements yet. Stay tuned!"),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Lessons
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Lessons",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
+                sectionCard(
+                  title: "Lessons",
+                  icon: Icons.menu_book,
+                  child: Column(
+                    children: [
+                      lessonButton(context, "Lesson 1: Numbers & Operations", const MathLessonOne()),
+                      lessonButton(context, "Lesson 2: Fractions & Decimals", const MathLessonTwo()),
+                      lessonButton(context, "Lesson 3: Word Problems & Applications", const MathLessonThree()),
+                    ],
                   ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MathLessonOne(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 1: Numbers & Operations",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MathLessonTwo(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 2: Fractions & Decimals",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MathLessonThree(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 3: Word Problems & Applications",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Quizzes
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Quizzes",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Quiz list will appear here soon.",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
+                sectionCard(
+                  title: "Quizzes",
+                  icon: Icons.quiz,
+                  child: const Text("Quiz list will appear here soon."),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Assignments
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Assignments",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Assignments will be posted here once available.",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    ),
-                  ],
+                sectionCard(
+                  title: "Assignments",
+                  icon: Icons.assignment,
+                  child: const Text("Assignments will be posted here once available."),
                 ),
+                const SizedBox(height: 80),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget sectionCard({required String title, required IconData icon, required Widget child}) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: lightGreen,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: green, width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 13),
+            offset: const Offset(0, 3),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: green),
+              const SizedBox(width: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  color: green,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          child,
+        ],
+      ),
+    );
+  }
+
+  Widget lessonButton(BuildContext context, String title, Widget screen) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: green,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: green, width: 1.8),
+          ),
+          elevation: 3,
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
           ),
         ),
       ),

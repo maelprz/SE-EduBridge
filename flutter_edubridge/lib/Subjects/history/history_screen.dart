@@ -21,7 +21,7 @@ class HistorySubject extends StatelessWidget {
           onLeadingIconPressed: () => Navigator.pop(context),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,191 +37,130 @@ class HistorySubject extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   "Welcome to History Class!\n"
-                  "This course is designed to help students explore past events, "
-                  "civilizations, and cultures. Students will learn to understand timelines, "
-                  "cause-and-effect, and the impact of history on today’s world.",
+                  "Explore past events, civilizations, and cultures. "
+                  "Understand timelines, cause-and-effect, and the impact of history on today’s world.",
                   style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
 
-                // Course Objective
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Course Objective",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
+                sectionCard(
+                  title: "Course Objective",
+                  icon: Icons.history_edu,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text("• Understand major events in world and local history"),
+                      Text("• Learn about past civilizations and cultures"),
+                      Text("• Analyze cause-and-effect relationships in history"),
+                      Text("• Appreciate how history shapes our present and future"),
+                    ],
                   ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Text(
-                        "• Understand major events in world and local history\n"
-                        "• Learn about past civilizations and cultures\n"
-                        "• Analyze cause-and-effect relationships in history\n"
-                        "• Appreciate how history shapes our present and future",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Announcements
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Announcements",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "No announcements yet. Stay tuned!",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
+                sectionCard(
+                  title: "Announcements",
+                  icon: Icons.campaign,
+                  child: const Text("No announcements yet. Stay tuned!"),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Lessons
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Lessons",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
+                sectionCard(
+                  title: "Lessons",
+                  icon: Icons.menu_book,
+                  child: Column(
+                    children: [
+                      lessonButton(context, "Lesson 1: Introduction to History", const HistoryLessonOne()),
+                      lessonButton(context, "Lesson 2: Ancient Civilizations", const HistoryLessonTwo()),
+                      lessonButton(context, "Lesson 3: Modern History Overview", const HistoryLessonThree()),
+                    ],
                   ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryLessonOne(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 1: Introduction to History",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryLessonTwo(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 2: Ancient Civilizations",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryLessonThree(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Lesson 3: Modern History Overview",
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.4,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Quizzes
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Quizzes",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Quiz list will appear here soon.",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    )
-                  ],
+                sectionCard(
+                  title: "Quizzes",
+                  icon: Icons.quiz,
+                  child: const Text("Quiz list will appear here soon."),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Assignments
-                ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    "Assignments",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: green,
-                    ),
-                  ),
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Assignments will be posted here once available.",
-                        style: TextStyle(fontSize: 16, height: 1.4),
-                      ),
-                    ),
-                  ],
+                sectionCard(
+                  title: "Assignments",
+                  icon: Icons.assignment,
+                  child: const Text("Assignments will be posted here once available."),
                 ),
+                const SizedBox(height: 80),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget sectionCard({required String title, required IconData icon, required Widget child}) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: lightGreen,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: green, width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 13),
+            offset: const Offset(0, 3),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: green),
+              const SizedBox(width: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  color: green,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          child,
+        ],
+      ),
+    );
+  }
+
+  Widget lessonButton(BuildContext context, String title, Widget screen) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: green,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: green, width: 1.8),
+          ),
+          elevation: 3,
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
           ),
         ),
       ),

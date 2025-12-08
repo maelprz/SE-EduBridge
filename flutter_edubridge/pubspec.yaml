@@ -37,3 +37,7 @@ flutter:
     - assets/subjects/math.png
     - assets/subjects/science.png
     - assets/subjects/history.png
+    - assets/mentorship/robert.png
+    - assets/mentorship/brian.png
+    - assets/mentorship/raven.png
+    - assets/mentorship/teacher1.png
