@@ -111,8 +111,9 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                 InputFieldPill(
                   controller: emailController,
                   text: 'Username or Email',
-                  backgroundColor: const Color.fromARGB(255, 119, 187, 162),
+                  backgroundColor: Color.fromARGB(255, 2, 95, 78),
                   textColor: Colors.white,
+                  hintColor: Colors.white,
                   width: 410,
                   height: 62,
                   obscureText: false,
@@ -124,8 +125,9 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                 InputFieldPill(
                   controller: passwordController,
                   text: 'Password',
-                  backgroundColor: const Color.fromARGB(255, 119, 187, 162),
+                  backgroundColor: Color.fromARGB(255, 2, 95, 78),
                   textColor: Colors.white,
+                  hintColor: Colors.white,
                   width: 410,
                   height: 62,
                   obscureText: true, 
@@ -143,14 +145,23 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(vertical: 15),
                             decoration: BoxDecoration(
-                              color: Colors.teal.shade700,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(40),
+                              boxShadow: [
+                                BoxShadow(
+                                  // ignore: deprecated_member_use
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
                             ),
                             child: const Center(
                               child: Text(
                                 "Log In",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 2, 95, 78),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),

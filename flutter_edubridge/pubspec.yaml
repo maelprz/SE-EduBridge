@@ -20,6 +20,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
@@ -41,3 +42,8 @@ flutter:
     - assets/mentorship/brian.png
     - assets/mentorship/raven.png
     - assets/mentorship/teacher1.png
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon/icon.png"

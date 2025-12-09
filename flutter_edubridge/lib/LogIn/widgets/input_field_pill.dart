@@ -7,6 +7,7 @@ class InputFieldPill extends StatelessWidget {
   final double height;
   final Color backgroundColor;
   final Color textColor;
+  final Color hintColor;
   final bool obscureText; // <-- add this
 
   const InputFieldPill({
@@ -17,6 +18,7 @@ class InputFieldPill extends StatelessWidget {
     required this.height,
     required this.backgroundColor,
     required this.textColor,
+    required this.hintColor,
     this.obscureText = false, // default to false
   });
 
@@ -39,6 +41,7 @@ class InputFieldPill extends StatelessWidget {
             style: TextStyle(color: textColor),
             decoration: InputDecoration(
               hintText: text,
+              hintStyle: TextStyle(color: hintColor),
               border: InputBorder.none,
             ),
           ),
