@@ -26,20 +26,37 @@ class _MessagingScreenState extends State<MessagingScreen> {
   final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
   String get chatId {
-    final ids = [currentUserId, widget.otherUserId];
-    ids.sort();
+    final ids = [currentUserId, widget.otherUserId]..sort();
     return ids.join("_");
   }
 
-  void sendMessage() async {
-    if (controller.text.trim().isEmpty) return;
+  @override
+  void initState() {
+    super.initState();
+    _removeNotificationsFromSender();
+  }
 
+  Future<void> _removeNotificationsFromSender() async {
+    final notifCollection = _firestore
+        .collection('users')
+        .doc(currentUserId)
+        .collection('notifications');
+
+    final query =
+        await notifCollection.where('senderId', isEqualTo: widget.otherUserId).get();
+
+    for (var doc in query.docs) {
+      await notifCollection.doc(doc.id).delete();
+    }
+  }
+
+  Future<void> sendMessage() async {
+    if (controller.text.trim().isEmpty) return;
     final messageText = controller.text.trim();
     controller.clear();
 
     final chatRef = _firestore.collection("chats").doc(chatId);
 
-    // Only create chat if it doesn't exist yet
     final chatSnapshot = await chatRef.get();
     if (!chatSnapshot.exists) {
       await chatRef.set({
@@ -48,12 +65,31 @@ class _MessagingScreenState extends State<MessagingScreen> {
       });
     }
 
-    // Add the message
-    await chatRef.collection("messages").add({
-      "text": messageText,
-      "senderId": currentUserId,
-      "timestamp": FieldValue.serverTimestamp(),
-    });
+    final senderDoc = await _firestore.collection('users').doc(currentUserId).get();
+    final senderName = senderDoc.data()?['firstName'] ?? 'Unknown';
+
+    final messageData = {
+      'text': messageText,
+      'senderId': currentUserId,
+      'senderName': senderName,
+      'timestamp': FieldValue.serverTimestamp(),
+      'chatId': chatId,
+      'receiverId': widget.otherUserId,
+    };
+
+    await chatRef.collection('messages').add(messageData);
+
+    final receiverRef = _firestore.collection('users').doc(widget.otherUserId);
+    final receiverDoc = await receiverRef.get();
+    if (!receiverDoc.exists) {
+      await receiverRef.set({
+        'firstName': 'Unknown',
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+    }
+
+    // Add notification only to the receiver
+    await receiverRef.collection('notifications').add(messageData);
 
     Future.delayed(const Duration(milliseconds: 100), () {
       scrollController.animateTo(
@@ -74,39 +110,33 @@ class _MessagingScreenState extends State<MessagingScreen> {
             onLeadingIconPressed: () => Navigator.pop(context),
           ),
           const Divider(height: 1),
-
-          // Messages list
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: _firestore
-                  .collection("chats")
+                  .collection('chats')
                   .doc(chatId)
-                  .collection("messages")
-                  .orderBy("timestamp")
+                  .collection('messages')
+                  .orderBy('timestamp')
                   .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
                 final messages = snapshot.data!.docs;
-
                 return ListView.builder(
                   controller: scrollController,
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final msg = messages[index];
-                    final isMe = msg["senderId"] == currentUserId;
-
-                    return MessageBubble(
-                      text: msg["text"],
-                      isMe: isMe,
-                    );
+                    final isMe = msg['senderId'] == currentUserId;
+                    return MessageBubble(text: msg['text'], isMe: isMe);
                   },
                 );
               },
             ),
           ),
-
           const Divider(height: 1),
           MessageInput(controller: controller, onSend: sendMessage),
         ],
