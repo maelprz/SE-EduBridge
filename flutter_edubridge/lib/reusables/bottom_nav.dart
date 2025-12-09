@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Dashboard/dashboard_screen.dart';
 import '../Profile/profile_screen.dart';
-import '../Messaging/message_list_screen.dart';
+import '../Messaging/screens/message_list_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -83,7 +83,7 @@ class _BottomNavItem extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => const MessageListScreen(),
+                builder: (_) => MessageListScreen(),
               ),
             );
           }
