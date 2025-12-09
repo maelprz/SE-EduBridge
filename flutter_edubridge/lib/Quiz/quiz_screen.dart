@@ -3,7 +3,7 @@ import '../providers/quiz_provider.dart';
 import '../models/questions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../reusables/app_bar_pill.dart';
-import '../../reusables/bottom_nav_wrapper.dart';
+import '../reusables/navigation/bottom_nav_wrapper.dart';
 import 'result_screen.dart';
 
 class QuizScreen extends ConsumerWidget {

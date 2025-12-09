@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../reusables/app_bar_pill.dart';
-import '../../reusables/bottom_nav_wrapper.dart';
+import '../../reusables/navigation/bottom_nav_wrapper.dart';
 import '../../Dashboard/dashboard_screen.dart';
 import '../widgets/chat_list.dart';
 import '../widgets/user_search_dropdown.dart';

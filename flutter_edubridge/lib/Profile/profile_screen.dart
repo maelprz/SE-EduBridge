@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../Dashboard/dashboard_screen.dart';
-import '../reusables/bottom_nav_wrapper.dart';
+import '../reusables/navigation/bottom_nav_wrapper.dart';
 import '../reusables/app_bar_pill.dart';
 import 'widgets/profile_image_card.dart';
 import '../../../providers/user_provider.dart';

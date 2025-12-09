@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'green_square_button.dart';
-import '../../reusables/image_card.dart';
+import 'image_card.dart';
 import 'see_more_card.dart';
 import '../../Subjects/subjects_screen.dart';
 import '../../Quiz/quizzes_screen.dart';

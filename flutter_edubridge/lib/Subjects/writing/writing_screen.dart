@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../reusables/bottom_nav_wrapper.dart';
+import '../../reusables/navigation/bottom_nav_wrapper.dart';
 import '../../reusables/app_bar_pill.dart';
 import 'writing_lessons/writing_lesson_one.dart';
 import 'writing_lessons/writing_lesson_two.dart';

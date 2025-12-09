@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../reusables/bottom_nav_wrapper.dart';
+import '../reusables/navigation/bottom_nav_wrapper.dart';
 import 'widgets/dashboard_header.dart';
 import 'widgets/dashboard_content.dart';
 
