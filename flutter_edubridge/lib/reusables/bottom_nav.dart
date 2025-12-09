@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Dashboard/dashboard_screen.dart';
 import '../Profile/profile_screen.dart';
+import '../Messaging/message_list_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -8,7 +9,7 @@ class BottomNavBar extends StatelessWidget {
 
   const BottomNavBar({
     super.key,
-    this.selectedIndex = 1, // default: Home
+    this.selectedIndex = 1,
     this.onTap,
   });
 
@@ -78,6 +79,14 @@ class _BottomNavItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (!selected) {
+          if (index == 0) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const MessageListScreen(),
+              ),
+            );
+          }
           if (index == 1) {
             Navigator.pushReplacement(
               context,
