@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../reusables/app_bar_pill.dart';
-import '../../reusables/bottom_nav_wrapper.dart';
+import '../reusables/navigation/bottom_nav_wrapper.dart';
 import '../../Voice_Lesson/voice_pill.dart';
 
 class VoiceLessonScreen extends StatelessWidget {
