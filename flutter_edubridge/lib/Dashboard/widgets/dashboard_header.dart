@@ -21,8 +21,11 @@ class _DashboardHeaderState extends ConsumerState<DashboardHeader> {
   OverlayEntry? _notifOverlay;
 
   void _toggleNotifications() {
-    if (_notifOverlay == null) _showNotifications();
-    else _removeNotifications();
+    if (_notifOverlay == null) {
+      _showNotifications();
+    } else {
+      _removeNotifications();
+    }
   }
 
   void _removeNotifications() {
@@ -31,8 +34,11 @@ class _DashboardHeaderState extends ConsumerState<DashboardHeader> {
   }
 
   void _toggleDropdown() {
-    if (_dropdownOverlay == null) _showDropdown();
-    else _removeDropdown();
+    if (_dropdownOverlay == null) {
+      _showDropdown();
+    } else {
+      _removeDropdown();
+    }
   }
 
   void _removeDropdown() {
@@ -140,7 +146,7 @@ class _DashboardHeaderState extends ConsumerState<DashboardHeader> {
                         );
                       },
                       loading: () => const SizedBox.shrink(),
-                      error: (_, __) => const SizedBox.shrink(),
+                      error: (_, _) => const SizedBox.shrink(),
                     );
                   },
                 ),
