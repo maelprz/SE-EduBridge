@@ -13,21 +13,20 @@ class VoiceLessonLevel extends StatefulWidget {
 }
 
 class _VoiceLessonLevelState extends State<VoiceLessonLevel> {
-  final AudioRecorder record = AudioRecorder(); // Record 6.x
-  final AudioPlayer player = AudioPlayer(); // AudioPlayers 6.x
+  final AudioRecorder record = AudioRecorder();
+  final AudioPlayer player = AudioPlayer();
 
   bool isRecording = false;
   bool isPlaying = false;
   String? recordedFilePath;
   double sliderValue = 0;
 
-  // Get file path for recording
   Future<String> _getFilePath() async {
     final dir = await getApplicationDocumentsDirectory();
     return '${dir.path}/voice_recording_level_${widget.level}.m4a';
   }
 
-  // Start recording
+  /// START RECORDING
   Future<void> startRecording() async {
     try {
       if (!await record.hasPermission()) return;
@@ -52,7 +51,7 @@ class _VoiceLessonLevelState extends State<VoiceLessonLevel> {
     }
   }
 
-  // Stop recording
+  /// STOP RECORDING
   Future<void> stopRecording() async {
     try {
       final path = await record.stop();
@@ -65,7 +64,7 @@ class _VoiceLessonLevelState extends State<VoiceLessonLevel> {
     }
   }
 
-  // Play recording
+  /// PLAY RECORDING
   Future<void> playRecording() async {
     try {
       if (recordedFilePath == null) return;
@@ -88,7 +87,7 @@ class _VoiceLessonLevelState extends State<VoiceLessonLevel> {
     super.dispose();
   }
 
-  // Dynamic sample text per level
+  /// SAMPLE TEXT PER LEVEL
   String sampleTextForLevel(int level) {
     switch (level) {
       case 1:
@@ -132,7 +131,7 @@ Good luck with this level!
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            // Top card
+            /// TOP HEADER
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -156,7 +155,7 @@ Good luck with this level!
               ),
             ),
 
-            // Text card
+            /// LESSON TEXT CARD
             Container(
               width: double.infinity,
               margin: const EdgeInsets.only(top: 10),
@@ -178,7 +177,7 @@ Good luck with this level!
               ),
             ),
 
-            // Controls card
+            /// RECORDING CONTROLS
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: const EdgeInsets.all(18),
@@ -191,7 +190,6 @@ Good luck with this level!
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Play button
                       IconButton(
                         onPressed: recordedFilePath != null
                             ? playRecording
@@ -201,7 +199,6 @@ Good luck with this level!
 
                       const Icon(Icons.volume_up, size: 28),
 
-                      // Record / Stop button
                       GestureDetector(
                         onTap: () async {
                           if (!isRecording) {
@@ -226,14 +223,14 @@ Good luck with this level!
                       const Icon(Icons.notes, size: 28),
                     ],
                   ),
+
                   const SizedBox(height: 10),
+
                   Slider(
                     value: sliderValue,
                     min: 0,
                     max: 100,
-                    onChanged: (v) {
-                      setState(() => sliderValue = v);
-                    },
+                    onChanged: (v) => setState(() => sliderValue = v),
                   ),
                 ],
               ),
