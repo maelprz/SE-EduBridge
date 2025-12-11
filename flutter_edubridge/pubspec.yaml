@@ -42,7 +42,7 @@ flutter:
     - assets/mentorship/brian.png
     - assets/mentorship/raven.png
     - assets/mentorship/teacher1.png
-
+    - assets/audio_book/book.png
 flutter_icons:
   android: true
   ios: true

@@ -5,7 +5,7 @@ import 'see_more_card.dart';
 import '../../Subjects/subjects_screen.dart';
 import '../../Quiz/quizzes_screen.dart';
 import '../../Mentorship/mentorship_screen.dart';
-import '../../Voice_Lesson/voice_lesson_screen.dart';
+import '../../Voice_Lesson/screens/voice_lesson_screen.dart';
 
 class DashboardContent extends StatelessWidget {
   final Size size;

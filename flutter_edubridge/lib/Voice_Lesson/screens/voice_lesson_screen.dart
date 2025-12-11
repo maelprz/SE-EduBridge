@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../reusables/app_bar_pill.dart';
-import '../reusables/navigation/bottom_nav_wrapper.dart';
-import '../../Voice_Lesson/voice_pill.dart';
+import '../../../reusables/app_bar_pill.dart';
+import '../../reusables/navigation/bottom_nav_wrapper.dart';
+import '../widgets/voice_pill.dart';
+import 'audio_book_screen.dart';
 
 class VoiceLessonScreen extends StatelessWidget {
   const VoiceLessonScreen({super.key});
@@ -33,14 +34,24 @@ class VoiceLessonScreen extends StatelessWidget {
             ),
 
             Center(
-              child: VoicePill(
-                icon: Icons.headphones,
-                text1: 'Audio Book',
-                height: 70,
-                width: 410,
-                textsize: 20,
-                textsize2: 16,
-                textcolor1: const Color.fromARGB(255, 2, 95, 78),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const AudioBookScreen(),
+                    ),
+                  );
+                },
+                child: VoicePill(
+                  icon: Icons.headphones,
+                  text1: 'Audio Book',
+                  height: 70,
+                  width: 410,
+                  textsize: 20,
+                  textsize2: 16,
+                  textcolor1: const Color.fromARGB(255, 2, 95, 78),
+                ),
               ),
             ),
 
