@@ -25,7 +25,7 @@ class AudioBookScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(color: Colors.black),
+                  border: Border.all(color: Colors.black, width: 3),
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
