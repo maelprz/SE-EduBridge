@@ -3,6 +3,9 @@ import 'package:record/record.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../../reusables/app_bar_pill.dart';
+import '../../reusables/navigation/bottom_nav_wrapper.dart';
+
 class VoiceLessonLevel extends StatefulWidget {
   final int level;
 
@@ -121,121 +124,135 @@ Good luck with this level!
   Widget build(BuildContext context) {
     final sampleText = sampleTextForLevel(widget.level);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Level ${widget.level}"),
-        backgroundColor: Colors.green.shade700,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            /// TOP HEADER
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.green.shade700,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.mic, color: Colors.white, size: 26),
-                  const SizedBox(width: 10),
-                  Text(
-                    "Level ${widget.level}: Speak the Basics",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+    return BottomNavWrapper(
+      index: 1, // highlight Voice Lesson in bottom nav
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBarPill(
+          title: "Vocal Practice",
+          onLeadingIconPressed: () => Navigator.pop(context),
+          height: 90,
+          backgroundColor: const Color.fromARGB(255, 229, 230, 230),
+        ),
 
-            /// LESSON TEXT CARD
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 10),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                sampleText,
-                style: const TextStyle(fontSize: 16, height: 1.4),
-              ),
-            ),
-
-            /// RECORDING CONTROLS
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF1F4F6),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: recordedFilePath != null
-                            ? playRecording
-                            : null,
-                        icon: const Icon(Icons.replay, size: 28),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// HEADER PILL
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF085F41),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.mic, color: Colors.white, size: 26),
+                    const SizedBox(width: 12),
+                    Text(
+                      "Speak the Basics",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
                       ),
+                    ),
+                  ],
+                ),
+              ),
 
-                      const Icon(Icons.volume_up, size: 28),
+              const SizedBox(height: 15),
 
-                      GestureDetector(
-                        onTap: () async {
-                          if (!isRecording) {
-                            await startRecording();
-                          } else {
-                            await stopRecording();
-                          }
-                        },
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: isRecording
-                              ? Colors.red
-                              : Colors.green,
-                          child: Icon(
-                            isRecording ? Icons.stop : Icons.mic,
-                            color: Colors.white,
-                            size: 20,
+              /// TEXT BLOCK
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.1),
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  sampleText,
+                  style: const TextStyle(fontSize: 17, height: 1.5),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// AUDIO CONTROLS CARD
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 18,
+                  horizontal: 16,
+                ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF1F4F6),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                          onPressed: recordedFilePath != null
+                              ? playRecording
+                              : null,
+                          icon: const Icon(Icons.replay, size: 30),
+                        ),
+
+                        const Icon(Icons.volume_up, size: 30),
+
+                        GestureDetector(
+                          onTap: () async {
+                            if (!isRecording) {
+                              await startRecording();
+                            } else {
+                              await stopRecording();
+                            }
+                          },
+                          child: CircleAvatar(
+                            radius: 24,
+                            backgroundColor: isRecording
+                                ? Colors.red
+                                : Colors.green,
+                            child: Icon(
+                              isRecording ? Icons.stop : Icons.mic,
+                              color: Colors.white,
+                              size: 22,
+                            ),
                           ),
                         ),
-                      ),
 
-                      const Icon(Icons.notes, size: 28),
-                    ],
-                  ),
+                        const Icon(Icons.notes, size: 30),
+                      ],
+                    ),
 
-                  const SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
-                  Slider(
-                    value: sliderValue,
-                    min: 0,
-                    max: 100,
-                    onChanged: (v) => setState(() => sliderValue = v),
-                  ),
-                ],
+                    Slider(
+                      value: sliderValue,
+                      min: 0,
+                      max: 100,
+                      onChanged: (v) => setState(() => sliderValue = v),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 100),
+            ],
+          ),
         ),
       ),
     );
