@@ -18,12 +18,14 @@ class AudioBookScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-
+              
+              SizedBox(height: 50),
               // --- AUDIO BOOK CARD ---
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
+                  border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
