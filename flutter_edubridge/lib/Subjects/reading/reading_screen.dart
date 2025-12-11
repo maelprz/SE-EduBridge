@@ -75,7 +75,7 @@ class ReadingSubject extends StatelessWidget {
                       lessonButton(
                         context,
                         "Lesson 1: Introduction to Reading",
-                        const ReadingLessonOne(),
+                        ReadingLessonOne(subjectId: "reading"),
                       ),
                       lessonButton(
                         context,
