@@ -15,10 +15,13 @@ Software Engineering - 11102 - TTH 1:30PM - 3:00PM
 **Aratia:**  
 - Created UML diagram  
 - Designed the flow of events for the system  
-- Worked on the class diagram  
+- Worked on the class diagram
 - Developed the dashboard
-- Organized file structure  
-- Created reusable widgets for the overall system  
+- Organized file structure
+- Implemented Navigation logic and Login logic
+- Made Messaging System and Notification System
+- Created reusable widgets for the overall system
+- Integrated Firebase Database System
 
 **Avelino:**  
 - Created UML diagram  
